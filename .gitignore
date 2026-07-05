@@ -1,0 +1,26 @@
+# Personal / machine-local
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Own git repos — not tracked by the root repo
+.claude/plugins/
+.claude/mcp/
+.claude/skills/linkedin/
+.claude/skills/post-linkedin/
+
+# Bulky retired data
+archive/
+old-outputs/
+
+# OS noise
+.DS_Store
+
+# Ephemeral MCP browser logs
+.playwright-mcp/
+
+# SDD scratch
+.superpowers/
+
+# Live run outputs (ai-search scraper etc.) — keep on disk, not in git
+aio_*.json
+AIO_*.xlsx
