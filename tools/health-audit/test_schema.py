@@ -21,7 +21,9 @@ def sample_audit():
         "ledger_entries": [{"fact_key": "dha-ebp-annual-premium", "page_value": "AED 320",
                             "verified_value": "AED 320", "source": "DHA",
                             "source_tier": "Primary", "status": "Confirmed"}],
-        "schema_audit": [{"item": "FAQPage", "status": "ok", "finding": "present"}],
+        "schema_audit": [{"row_type": "implemented", "type_or_severity": "FAQPage",
+                          "parse": "valid", "parity": "matches page",
+                          "detail": "8 Q-A pairs"}],
         "priority_recs": [{"priority": "High", "issue": "meta", "action": "rewrite"}],
     }
 

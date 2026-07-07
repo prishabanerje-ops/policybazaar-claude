@@ -12,15 +12,16 @@ from state import read_state, write_state
 SHEET_COLUMNS = {
     "Summary": ["URL", "Audit Date", "SEO", "GEO", "Human-Likeness", "YMYL",
                 "Fact-Check", "OVERALL", "Rating", "Detailed Report (.md)"],
-    "Lens Scores": ["URL", "Audit Date", "Lens", "Parameter", "Score", "Max",
-                    "Status", "Finding"],
+    "Lens Scores": ["URL", "Audit Date", "Lens", "Parameter", "Status", "Score",
+                    "Finding"],
     "Findings": ["URL", "Audit Date", "Lens", "Severity", "Found", "Why", "Fix"],
-    "Fact-Check": ["URL", "Audit Date", "Claim", "Verification", "Correct Value",
-                   "Source", "Source Tier", "Status", "Fix"],
-    "Schema": ["URL", "Audit Date", "Item", "Status", "Finding"],
-    "Priority Recs": ["URL", "Audit Date", "Priority", "Issue", "Action"],
-    "Verification Ledger": ["Fact Key", "Page Value", "Verified Value", "Source",
-                            "Source Tier", "Status", "URL", "Audit Date"],
+    "Fact-Check": ["URL", "Audit Date", "Claim", "Verification",
+                   "Correct Value (source, date)", "Source Tier", "Status", "Fix"],
+    "Schema": ["URL", "Audit Date", "Row Type", "@type / Severity", "Parse",
+               "Parity", "Detail"],
+    "Priority Recs": ["URL", "Audit Date", "Priority", "Action"],
+    "Verification Ledger": ["Figure", "Value", "Source", "Tier",
+                            "First Verified For", "Date"],
 }
 SCORE_FIELDS = ("seo", "geo", "human_likeness", "ymyl", "fact_check", "overall")
 
@@ -35,26 +36,50 @@ def rating(overall):
     return "🔴 Major rework"
 
 
+def fold_correct_value(c, day):
+    """Real workbook folds source+date into the Correct Value cell."""
+    if c["correct_value"] == "n/a" or not c["source"]:
+        return c["correct_value"]
+    return f"{c['correct_value']} ({c['source']}, {day})"
+
+
 def rows_for(d):
+    """Per-audit rows for every sheet except Verification Ledger (global registry)."""
     url, day, s = d["url"], d["audit_date"], d["scores"]
     return {
         "Summary": [[url, day, s["seo"], s["geo"], s["human_likeness"], s["ymyl"],
                      s["fact_check"], s["overall"], rating(s["overall"]), d["md_file"]]],
-        "Lens Scores": [[url, day, p["lens"], p["name"], p["score"], p["max"],
-                         p["status"], p["finding"]] for p in d["parameters"]],
+        "Lens Scores": [[url, day, p["lens"], p["name"], p["status"],
+                         f"{p['score']}/{p['max']}", p["finding"]]
+                        for p in d["parameters"]],
         "Findings": [[url, day, f["lens"], f["severity"], f["found"], f["why"],
                       f["fix"]] for f in d["findings"]],
-        "Fact-Check": [[url, day, c["claim"], c["verification"], c["correct_value"],
-                        c["source"], c["source_tier"], c["status"], c["fix"]]
-                       for c in d["fact_checks"]],
-        "Schema": [[url, day, i["item"], i["status"], i["finding"]]
-                   for i in d["schema_audit"]],
-        "Priority Recs": [[url, day, r["priority"], r["issue"], r["action"]]
+        "Fact-Check": [[url, day, c["claim"], c["verification"],
+                        fold_correct_value(c, day), c["source_tier"], c["status"],
+                        c["fix"]] for c in d["fact_checks"]],
+        "Schema": [[url, day, i["row_type"], i["type_or_severity"], i["parse"],
+                    i["parity"], i["detail"]] for i in d["schema_audit"]],
+        "Priority Recs": [[url, day, r["priority"], f"{r['issue']} → {r['action']}"]
                           for r in d["priority_recs"]],
-        "Verification Ledger": [[e["fact_key"], e["page_value"], e["verified_value"],
-                                 e["source"], e["source_tier"], e["status"], url, day]
-                                for e in d["ledger_entries"]],
     }
+
+
+def ledger_rows(d, known_figures):
+    """Verification Ledger is a global unique-fact registry: one row per fact_key.
+
+    Appends only verified facts (verified_value not empty/"n/a") whose fact_key is
+    not already in the Figure column; mutates known_figures so a single batch
+    cannot append duplicates. Per-page values stay in the audit JSONs — the
+    consistency engine reads those, not this sheet.
+    """
+    rows = []
+    for e in d["ledger_entries"]:
+        if e["verified_value"] in ("", "n/a") or e["fact_key"] in known_figures:
+            continue
+        known_figures.add(e["fact_key"])
+        rows.append([e["fact_key"], e["verified_value"], e["source"],
+                     e["source_tier"], d["url"], d["audit_date"]])
+    return rows
 
 
 def ensure_workbook(path):
@@ -96,6 +121,9 @@ def collect(state_csv, audit_data_dir, xlsx_path, fact_keys_md, dry_run=False):
     audit_data_dir, xlsx_path = Path(audit_data_dir), Path(xlsx_path)
     rows = read_state(state_csv)
     wb = ensure_workbook(xlsx_path)
+    ledger_ws = wb["Verification Ledger"]
+    known_figures = {r[0] for r in ledger_ws.iter_rows(min_row=2, values_only=True)
+                     if r and r[0]}
     done, failed, ingested = [], [], []
     for row in rows:
         if row["status"] != "in_progress":
@@ -115,6 +143,11 @@ def collect(state_csv, audit_data_dir, xlsx_path, fact_keys_md, dry_run=False):
             for r in sheet_rows:
                 ws.append(r)
             ws.auto_filter.ref = ws.dimensions
+        new_ledger = ledger_rows(data, known_figures)
+        if new_ledger:
+            for r in new_ledger:
+                ledger_ws.append(r)
+            ledger_ws.auto_filter.ref = ledger_ws.dimensions
         row.update(status="done", audit_date=data["audit_date"],
                    md_file=data["md_file"], json_file=json_path.name,
                    **{k: str(data["scores"][k]) for k in SCORE_FIELDS})

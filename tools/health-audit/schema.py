@@ -14,7 +14,7 @@ LIST_ITEM_KEYS = {
                     "source_tier", "status", "fix"},
     "ledger_entries": {"fact_key", "page_value", "verified_value", "source",
                        "source_tier", "status"},
-    "schema_audit": {"item", "status", "finding"},
+    "schema_audit": {"row_type", "type_or_severity", "parse", "parity", "detail"},
     "priority_recs": {"priority", "issue", "action"},
 }
 
