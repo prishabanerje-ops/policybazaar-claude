@@ -102,6 +102,13 @@ def ensure_workbook(path):
 
 
 def update_fact_keys(fact_keys_md, datas):
+    """Update fact-keys.md with new fact_keys from ledger_entries.
+
+    fact-keys.md is the SEEN-keys registry for agent key reuse (includes all facts,
+    verified and unverified, by design). The Verification Ledger sheet holds only
+    verified facts. This function records every fact_key encountered so future runs
+    can deduplicate across batches.
+    """
     known = set()
     if fact_keys_md.exists():
         known = {line.split("`")[1] for line in fact_keys_md.read_text().splitlines()
@@ -131,7 +138,13 @@ def collect(state_csv, audit_data_dir, xlsx_path, fact_keys_md, dry_run=False):
         json_path = audit_data_dir / f"{row['slug']}.json"
         if not json_path.exists():
             continue  # agent still running or died before writing — reset-stale handles it
-        data = json.loads(json_path.read_text())
+        try:
+            data = json.loads(json_path.read_text())
+        except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+            row.update(status="failed",
+                       failure_reason=f"corrupt json {json_path.name}: {exc}")
+            failed.append(row["url"])
+            continue
         errors = validate_audit_json(data)
         if errors:
             row.update(status="failed",

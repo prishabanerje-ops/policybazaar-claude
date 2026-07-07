@@ -103,3 +103,55 @@ def test_dry_run_writes_nothing(tmp_path):
     collect(state_csv, data_dir, xlsx, fact_keys, dry_run=True)
     assert not xlsx.exists()
     assert read_state(state_csv)[0]["status"] == "in_progress"
+
+
+def test_corrupt_json_fails_its_row_without_poisoning_the_batch(tmp_path):
+    state_csv, data_dir, xlsx, fact_keys = setup_run(tmp_path)
+    second = sample_audit()
+    second["url"] = "https://www.policybazaar.ae/health-insurance/dubai/"
+    second["slug"] = "dubai"
+    rows = read_state(state_csv)
+    extra = {field: "" for field in STATE_FIELDS}
+    extra.update(url=second["url"], slug="dubai", tier="A-core",
+                 page_type="core-page", status="in_progress")
+    write_state(state_csv, rows + [extra])
+    (data_dir / "dubai.json").write_text(json.dumps(second))
+    (data_dir / "health-insurance.json").write_text('{"truncated": ')
+    done, failed = collect(state_csv, data_dir, xlsx, fact_keys)
+    assert len(done) == 1 and len(failed) == 1
+    by_slug = {r["slug"]: r for r in read_state(state_csv)}
+    assert by_slug["dubai"]["status"] == "done"
+    assert by_slug["health-insurance"]["status"] == "failed"
+    assert "corrupt json" in by_slug["health-insurance"]["failure_reason"]
+
+
+def test_ledger_dedupes_across_separate_collect_runs(tmp_path):
+    state_csv, data_dir, xlsx, fact_keys = setup_run(tmp_path)
+    collect(state_csv, data_dir, xlsx, fact_keys)  # first batch commits the fact_key
+    second = sample_audit()
+    second["url"] = "https://www.policybazaar.ae/health-insurance/dubai/"
+    second["slug"] = "dubai"
+    rows = read_state(state_csv)
+    extra = {field: "" for field in STATE_FIELDS}
+    extra.update(url=second["url"], slug="dubai", tier="A-core",
+                 page_type="core-page", status="in_progress")
+    write_state(state_csv, rows + [extra])
+    (data_dir / "dubai.json").write_text(json.dumps(second))
+    done, failed = collect(state_csv, data_dir, xlsx, fact_keys)  # second batch, same fact_key
+    assert done and not failed
+    ledger = load_workbook(xlsx)["Verification Ledger"]
+    assert ledger.max_row == 2  # header + one row — fact_key already registered
+
+
+def test_header_mismatch_exits_loudly_before_any_append(tmp_path):
+    import pytest
+    state_csv, data_dir, xlsx, fact_keys = setup_run(tmp_path)
+    from openpyxl import Workbook
+    wb = Workbook()
+    wb.remove(wb.active)
+    for name, cols in SHEET_COLUMNS.items():
+        wb.create_sheet(name).append(cols)
+    wb["Summary"].cell(row=1, column=8).value = "WRONG"
+    wb.save(xlsx)
+    with pytest.raises(SystemExit):
+        collect(state_csv, data_dir, xlsx, fact_keys)
