@@ -37,7 +37,10 @@ def validate_audit_json(data):
             if not isinstance(value, (int, float)):
                 errors.append(f"score {name!r} is not a number")
     for list_key, item_keys in LIST_ITEM_KEYS.items():
-        for i, item in enumerate(data.get(list_key) or []):
+        items = data.get(list_key)
+        if not isinstance(items, list):
+            continue  # missing/wrong type already reported by the TOP_KEYS check
+        for i, item in enumerate(items):
             if not isinstance(item, dict):
                 errors.append(f"{list_key}[{i}] is not an object")
                 continue

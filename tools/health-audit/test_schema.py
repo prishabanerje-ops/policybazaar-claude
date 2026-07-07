@@ -52,3 +52,11 @@ def test_list_item_missing_field_is_reported():
     data = sample_audit()
     del data["ledger_entries"][0]["fact_key"]
     assert any("ledger_entries[0]" in e for e in validate_audit_json(data))
+
+
+def test_non_list_value_reports_one_type_error_not_per_character_noise():
+    data = sample_audit()
+    data["findings"] = "oops-a-string"
+    errors = validate_audit_json(data)
+    assert any("'findings' should be list" in e for e in errors)
+    assert not any("findings[" in e for e in errors)
