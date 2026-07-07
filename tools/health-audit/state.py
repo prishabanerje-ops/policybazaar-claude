@@ -28,6 +28,23 @@ def next_batch(rows, size, tiers=None):
     return pending[:size]
 
 
+TIER_PRIORITY = ["A-core", "A-articles", "B"]
+
+
+def next_batch_cascading(rows, size, start_tier):
+    """Fill a batch starting at start_tier, falling through the tier priority order."""
+    if start_tier not in TIER_PRIORITY:
+        raise ValueError(
+            f"unknown tier {start_tier!r} — expected one of {TIER_PRIORITY}"
+        )
+    batch = []
+    for tier in TIER_PRIORITY[TIER_PRIORITY.index(start_tier):]:
+        batch.extend(next_batch(rows, size - len(batch), [tier]))
+        if len(batch) >= size:
+            break
+    return batch
+
+
 def mark(rows, urls, **updates):
     urls = set(urls)
     hit = 0
@@ -67,9 +84,11 @@ if __name__ == "__main__":
         print(f"reset {n} stale rows to pending")
     elif cmd == "take":
         size = int(sys.argv[2])
-        tiers = sys.argv[3].split(",") if len(sys.argv) > 3 else None
         batch_id = sys.argv[4] if len(sys.argv) > 4 else "batch"
-        batch = next_batch(rows, size, tiers)
+        if len(sys.argv) > 3:
+            batch = next_batch_cascading(rows, size, sys.argv[3])
+        else:
+            batch = next_batch(rows, size)
         mark(rows, [r["url"] for r in batch], status="in_progress", batch_id=batch_id)
         write_state(STATE_CSV, rows)
         print(json.dumps(
