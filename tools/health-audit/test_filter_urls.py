@@ -1,5 +1,7 @@
 # tools/health-audit/test_filter_urls.py
-from filter_urls import build_rows, classify, make_slug
+import pytest
+
+from filter_urls import STATE_FIELDS, build_rows, classify, make_slug
 
 BASE = "https://www.policybazaar.ae"
 
@@ -48,3 +50,31 @@ def test_build_rows_dedupes_and_marks_pending():
     assert len(rows) == 1
     assert rows[0]["status"] == "pending"
     assert rows[0]["slug"] == "family-health-insurance-hic"
+
+
+def test_main_refuses_to_overwrite_existing_state(tmp_path, monkeypatch):
+    import filter_urls
+    state = tmp_path / "audit-state.csv"
+    state.write_text("existing")
+    monkeypatch.setattr(filter_urls, "STATE_CSV", state)
+    monkeypatch.setattr(filter_urls, "URLS_TXT", tmp_path / "urls.txt")
+    with pytest.raises(SystemExit):
+        filter_urls.main(force=False)
+    assert state.read_text() == "existing"
+
+
+def test_main_force_rebuilds_existing_state(tmp_path, monkeypatch):
+    import filter_urls
+    state = tmp_path / "audit-state.csv"
+    state.write_text("existing")
+    urls = tmp_path / "urls.txt"
+    urls.write_text("https://www.policybazaar.ae/family-health-insurance-hic/\n")
+    monkeypatch.setattr(filter_urls, "STATE_CSV", state)
+    monkeypatch.setattr(filter_urls, "URLS_TXT", urls)
+    filter_urls.main(force=True)
+    assert "family-health-insurance-hic" in state.read_text()
+
+
+def test_state_fields_interface_is_stable():
+    assert len(STATE_FIELDS) == 16
+    assert STATE_FIELDS[0] == "url" and STATE_FIELDS[4] == "status"

@@ -24,3 +24,7 @@ old-outputs/
 # Live run outputs (ai-search scraper etc.) — keep on disk, not in git
 aio_*.json
 AIO_*.xlsx
+
+# Python cache
+__pycache__/
+.pytest_cache/
