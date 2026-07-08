@@ -9,6 +9,8 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
+from schema import validate_audit_json
+
 CONSISTENCY_COLUMNS = ["Fact Key", "Canonical Value", "Source", "Source Tier",
                        "URL", "Page Value", "Verdict", "Fix"]
 
@@ -16,7 +18,15 @@ CONSISTENCY_COLUMNS = ["Fact Key", "Canonical Value", "Source", "Source Tier",
 def load_entries(audit_data_dir):
     entries = []
     for path in sorted(Path(audit_data_dir).glob("*.json")):
-        data = json.loads(path.read_text())
+        try:
+            data = json.loads(path.read_text())
+        except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+            print(f"skipping invalid audit json {path.name}: {exc}")
+            continue
+        errors = validate_audit_json(data)
+        if errors:
+            print(f"skipping invalid audit json {path.name}: {errors[:1]}")
+            continue
         for e in data.get("ledger_entries", []):
             entries.append({**e, "url": data["url"]})
     return entries
@@ -42,10 +52,16 @@ def judge(group):
 
     Returns (canonical_value, source, source_tier, rows) where each row is
     (url, page_value, verdict, fix) and verdict is one of:
-    consistent | truth-violation | internal-disagreement.
+    consistent | truth-violation | internal-disagreement | verified-source-conflict.
     """
     verified = [e for e in group if norm(e.get("verified_value", "")) not in ("", "n/a")]
     if verified:
+        verified_values = {norm(e["verified_value"]) for e in verified}
+        if len(verified_values) > 1:
+            fix = ("Multiple verified sources disagree for this fact — resolve manually "
+                   "before treating one as canonical.")
+            return "", "", "", [(e["url"], e["page_value"], "verified-source-conflict", fix)
+                                for e in group]
         counts = defaultdict(int)
         for e in verified:
             counts[norm(e["verified_value"])] += 1
@@ -81,9 +97,10 @@ def run(audit_data_dir, xlsx_path, result_dir, report_date=None):
 
     xlsx_path = Path(xlsx_path)
     wb = load_workbook(xlsx_path)
-    if "Consistency" not in wb.sheetnames:
-        wb.create_sheet("Consistency").append(CONSISTENCY_COLUMNS)
-    ws = wb["Consistency"]
+    if "Consistency" in wb.sheetnames:
+        wb.remove(wb["Consistency"])
+    ws = wb.create_sheet("Consistency")
+    ws.append(CONSISTENCY_COLUMNS)
 
     lines = [f"# Health Insurance Cross-Site Consistency Report — {report_date}", ""]
     if merge_candidates:
