@@ -9,10 +9,21 @@ State + outputs live in `/Users/aakashsrivastava/Documents/Documents/PolicyBazaa
    zero in_progress → Task 1 is complete: stop and propose running the consistency engine
    (`python3 consistency.py`).
 2. **Recover:** `python3 state.py reset-stale` — returns crashed in_progress rows to pending.
-3. **Take a batch:** priority order A-core → A-articles → B. Sizes: 12 for tier A,
-   40 for tier B.
-   `python3 state.py take 12 A-core batch-YYYY-MM-DD-N` (falls through to
+3. **Take a batch:** priority order A-core → A-articles → B. **Batch sizes are
+   evidence-based, not the plan's original 12/40** — a 5-concurrent-agent batch
+   burned 1.4M tokens across retries with zero completions before hitting the
+   account's session limit, while a 2-concurrent batch (1 full-depth Tier A +
+   1 light Tier B) completed cleanly on the first try in ~295K tokens / ~13.5 min
+   (2026-07-08 pilot). Start conservative and scale only after a batch completes
+   with **zero retries** (check the workflow's per-agent `attempt` count / journal —
+   a batch that needed retries should not be sized up):
+   - Tier A (A-core, A-articles): start at **4**, not 12.
+   - Tier B: start at **12**, not 40.
+   `python3 state.py take 4 A-core batch-YYYY-MM-DD-N` (falls through to
    `A-articles` then `B` when the tier is exhausted). The JSON it prints is the batch.
+   If a batch completes with zero retries, the next batch may increase by roughly
+   50% (e.g. 4 → 6 → 9); if a batch needs any retry or hits the session limit,
+   drop back to the last size that succeeded cleanly.
 4. **Run the workflow:** Read `agent-prompt.md`, then invoke the Workflow tool with
    `scriptPath: tools/health-audit/workflow-batch.js` and
    `args: { batch: <the JSON from step 3>, promptTemplate: <agent-prompt.md content>,
