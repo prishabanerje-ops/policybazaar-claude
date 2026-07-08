@@ -10,20 +10,27 @@ State + outputs live in `/Users/aakashsrivastava/Documents/Documents/PolicyBazaa
    (`python3 consistency.py`).
 2. **Recover:** `python3 state.py reset-stale` — returns crashed in_progress rows to pending.
 3. **Take a batch:** priority order A-core → A-articles → B. **Batch sizes are
-   evidence-based, not the plan's original 12/40** — a 5-concurrent-agent batch
-   burned 1.4M tokens across retries with zero completions before hitting the
-   account's session limit, while a 2-concurrent batch (1 full-depth Tier A +
-   1 light Tier B) completed cleanly on the first try in ~295K tokens / ~13.5 min
-   (2026-07-08 pilot). Start conservative and scale only after a batch completes
-   with **zero retries** (check the workflow's per-agent `attempt` count / journal —
-   a batch that needed retries should not be sized up):
-   - Tier A (A-core, A-articles): start at **4**, not 12.
-   - Tier B: start at **12**, not 40.
-   `python3 state.py take 4 A-core batch-YYYY-MM-DD-N` (falls through to
+   evidence-based, not the plan's original 12/40 — and evidence keeps revising
+   them down.** Observed so far (2026-07-08):
+   - 5 concurrent (mixed depth): 1.4M tokens across retries, 0/5 completed, session limit.
+   - 4 concurrent, all Tier A-core (uniformly full-depth + fact-check): 588K tokens,
+     0/4 completed, session limit — despite using *fewer* total tokens than the
+     5-agent failure, suggesting the binding constraint is concurrent load/rate
+     (simultaneous heavy streaming calls), not total token budget.
+   - 2 concurrent (1 full-depth Tier A + 1 light Tier B): **succeeded**, ~295K
+     tokens, ~13.5 min, zero retries. This is the only combination proven to work.
+   **Current safe starting point: batch size 2, for ANY tier.** A same-tier batch
+   of 2 (e.g. 2× A-core) is UNTESTED — treat it as the next experiment, not an
+   assumed-safe step up from the proven 1+1 mixed case.
+   `python3 state.py take 2 A-core batch-YYYY-MM-DD-N` (falls through to
    `A-articles` then `B` when the tier is exhausted). The JSON it prints is the batch.
-   If a batch completes with zero retries, the next batch may increase by roughly
-   50% (e.g. 4 → 6 → 9); if a batch needs any retry or hits the session limit,
-   drop back to the last size that succeeded cleanly.
+   Only increase batch size after a batch completes with **zero retries** (check
+   the workflow's per-agent `attempt` count / journal), and increase by 1 at a
+   time, not by ratio — the failures above show size alone doesn't predict
+   success; each step up needs its own proof. Any retry or session-limit hit means:
+   drop back to the last size that worked, reset stale rows, and stop attempting
+   further batches until the session limit's stated reset time has passed —
+   retrying immediately just burns more quota against the same wall.
 4. **Run the workflow:** Read `agent-prompt.md`, then invoke the Workflow tool with
    `scriptPath: tools/health-audit/workflow-batch.js` and
    `args: { batch: <the JSON from step 3>, promptTemplate: <agent-prompt.md content>,
