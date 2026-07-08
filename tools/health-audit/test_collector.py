@@ -42,6 +42,16 @@ def test_collect_appends_all_sheets_and_marks_done(tmp_path):
     assert "dha-ebp-annual-premium" in fact_keys.read_text()
 
 
+def test_summary_stores_basename_not_full_path(tmp_path):
+    state_csv, data_dir, xlsx, fact_keys = setup_run(tmp_path)
+    data = sample_audit()
+    data["md_file"] = "/some/absolute/path/policybazaar-health-insurance-content-audit-2026-07-07.md"
+    (data_dir / "health-insurance.json").write_text(json.dumps(data))
+    collect(state_csv, data_dir, xlsx, fact_keys)
+    ws = load_workbook(xlsx)["Summary"]
+    assert ws.cell(row=2, column=10).value == "policybazaar-health-insurance-content-audit-2026-07-07.md"
+
+
 def test_rows_match_real_workbook_layout(tmp_path):
     state_csv, data_dir, xlsx, fact_keys = setup_run(tmp_path)
     collect(state_csv, data_dir, xlsx, fact_keys)

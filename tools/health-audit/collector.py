@@ -48,7 +48,8 @@ def rows_for(d):
     url, day, s = d["url"], d["audit_date"], d["scores"]
     return {
         "Summary": [[url, day, s["seo"], s["geo"], s["human_likeness"], s["ymyl"],
-                     s["fact_check"], s["overall"], rating(s["overall"]), d["md_file"]]],
+                     s["fact_check"], s["overall"], rating(s["overall"]),
+                     Path(d["md_file"]).name]],
         "Lens Scores": [[url, day, p["lens"], p["name"], p["status"],
                          f"{p['score']}/{p['max']}", p["finding"]]
                         for p in d["parameters"]],
