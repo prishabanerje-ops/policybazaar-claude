@@ -18,19 +18,35 @@ State + outputs live in `/Users/aakashsrivastava/Documents/Documents/PolicyBazaa
      5-agent failure, suggesting the binding constraint is concurrent load/rate
      (simultaneous heavy streaming calls), not total token budget.
    - 2 concurrent (1 full-depth Tier A + 1 light Tier B): **succeeded**, ~295K
-     tokens, ~13.5 min, zero retries. This is the only combination proven to work.
-   **Current safe starting point: batch size 2, for ANY tier.** A same-tier batch
-   of 2 (e.g. 2× A-core) is UNTESTED — treat it as the next experiment, not an
-   assumed-safe step up from the proven 1+1 mixed case.
-   `python3 state.py take 2 A-core batch-YYYY-MM-DD-N` (falls through to
+     tokens, ~13.5 min, zero retries.
+   - 2 concurrent, BOTH Tier A-core (uniformly full-depth): **failed**, 241K
+     tokens (less than the successful mixed batch), 0/2 completed, session limit.
+   **The dial that matters is total concurrent full-depth ("heavy") load, not
+   raw agent count.** The only combination ever proven to work is exactly
+   **1 heavy (Tier A) agent at a time**, optionally paired with 1 light (Tier B)
+   agent alongside it. Two heavy agents at once has failed every time it's been
+   tried, even when the resulting token total was lower than a batch that
+   succeeded. **Current safe starting point: 1 Tier-A agent per batch** (add a
+   Tier-B agent alongside it once that pattern proves stable again, don't add a
+   second Tier-A agent).
+   **The reset time moves later with every failed attempt** (observed: 4am → 3:10pm
+   → 4:10pm across today's failures, each roughly an hour after the failing
+   attempt) — this looks like a rolling usage window, not a fixed daily reset.
+   Concretely: retrying too soon or too big does not just fail harmlessly, it
+   pushes the recovery point further out. Treat every session-limit hit as a
+   reason to WAIT LONGER before the next attempt, not just until the stated
+   reset time — and drop to the smallest untested-safe size (1 Tier-A agent
+   alone) rather than repeating the size that just failed.
+   `python3 state.py take 1 A-core batch-YYYY-MM-DD-N` (falls through to
    `A-articles` then `B` when the tier is exhausted). The JSON it prints is the batch.
    Only increase batch size after a batch completes with **zero retries** (check
-   the workflow's per-agent `attempt` count / journal), and increase by 1 at a
-   time, not by ratio — the failures above show size alone doesn't predict
-   success; each step up needs its own proof. Any retry or session-limit hit means:
-   drop back to the last size that worked, reset stale rows, and stop attempting
-   further batches until the session limit's stated reset time has passed —
-   retrying immediately just burns more quota against the same wall.
+   the workflow's per-agent `attempt` count / journal), and increase by the
+   smallest possible step — the failures above show size/token-total alone
+   doesn't predict success; each step up needs its own proof. Any retry or
+   session-limit hit means: drop back to the last size that worked, reset stale
+   rows, and stop attempting further batches for a meaningfully longer window
+   than the stated reset — retrying at the reset boundary has already caused a
+   repeat failure once today.
 4. **Run the workflow:** Read `agent-prompt.md`, then invoke the Workflow tool with
    `scriptPath: tools/health-audit/workflow-batch.js` and
    `args: { batch: <the JSON from step 3>, promptTemplate: <agent-prompt.md content>,
