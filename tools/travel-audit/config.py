@@ -13,3 +13,6 @@ AUDIT_DATA_DIR = RESULT_DIR / "audit-data"
 STATE_CSV = RESULT_DIR / "audit-state.csv"
 MASTER_XLSX = RESULT_DIR / "policybazaar-insurance-content-audit.xlsx"
 FACT_KEYS_MD = AUDIT_DATA_DIR / "fact-keys.md"
+
+VERTICAL_LABEL = "Travel Insurance"
+TRACKER_XLSX = RESULT_DIR / "Final Audit" / "policybazaar-travel-audit-tracker.xlsx"

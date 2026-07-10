@@ -47,7 +47,12 @@ Tier rules (confirmed 2026-07-10): destination + visa pages A-core; news/podcast
 5. **Mark failures:** for every workflow result with status "failed":
    `python3 state.py fail "<url>" "<failure_reason>"`.
 6. **Collect:** `python3 collector.py --dry-run` (sanity), then `python3 collector.py`.
-7. **Report to Aakash:** done/failed counts this batch, cumulative summary
+7. **Refresh the tracker:** `python3 tracker.py` — regenerates
+   `Result/Final Audit/policybazaar-travel-audit-tracker.xlsx` from the current
+   `audit-state.csv`. This is the human-facing status file Aakash checks — always
+   run it right after collector.py so it never goes stale. It's a generated view
+   (fully rewritten every run); never edit the tracker xlsx by hand.
+8. **Report to Aakash:** done/failed counts this batch, cumulative summary
    (`python3 state.py summary`), score range, and any URL that failed twice
    (needs manual attention — do NOT silently retry forever). If a batch hits the
    current-session limit, reset stale rows and tell Aakash to check the usage
@@ -59,3 +64,6 @@ Tier rules (confirmed 2026-07-10): destination + visa pages A-core; news/podcast
 - Never touch the master xlsx except through `collector.py` (append-only).
 - One collector run at a time; the workflow agents never write xlsx/state themselves.
 - No automated polling loop for this command — it runs when Aakash invokes it.
+- Before picking up a batch, `Final Audit/policybazaar-travel-audit-tracker.xlsx`
+  (or `python3 state.py summary`) is the source of truth for what's done — check it
+  instead of guessing or re-deriving progress from memory.
