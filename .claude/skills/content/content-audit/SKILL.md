@@ -608,16 +608,22 @@ Full Step 4 report content, plus the schema deep-dive and a verification ledger
   | Interlinks | URL · Direction · Other Page · Suggested Anchor · Placement · Why · Status |
   | Verification Ledger | Vertical-wide verified figures with source + tier |
 
-**Save locations (verified — the doubled "Documents/Documents" is correct):**
+**Save locations (verified — the doubled "Documents/Documents" is correct; moved into
+each vertical's `Final Audit/` subfolder on 2026-07-10 — this is now the pipeline's
+self-contained working directory: ledger, per-URL JSON, master xlsx, tracker, and
+per-URL reports all live there. The `Result/` root above it holds only older/unrelated
+files — never save pipeline output directly into `Result/` root):**
 
 | Vertical | Folder |
 |---|---|
-| Health insurance | `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Health Insurance/Result/` |
-| Travel insurance | `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Travel Insurance/Result/` |
+| Health insurance | `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Health Insurance/Result/Final Audit/` |
+| Travel insurance | `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Travel Insurance/Result/Final Audit/` |
 | Any other vertical | Out of scope for this skill — do not audit or save |
 
 Note: the master shares the same filename in every vertical folder by design — the
-folder, not the filename, identifies the vertical.
+folder, not the filename, identifies the vertical. Each `Final Audit/` folder also
+holds a generated Excel tracker (`policybazaar-<vertical>-audit-tracker.xlsx`) — check
+it (or `state.py summary`) before picking up new work instead of guessing coverage.
 
 FILE MODE audits (pasted text/drafts): on-screen report only, unless asked to save.
 

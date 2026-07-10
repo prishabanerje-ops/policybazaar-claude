@@ -29,9 +29,9 @@
    candidates marked "candidate-verify-source". Tier A: both directions. Tier B:
    outbound only, max 3.
 3. Write the full report (skill Step 4 format) to:
-   `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Travel Insurance/Result/policybazaar-{SLUG}-content-audit-{AUDIT_DATE}.md`
+   `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Travel Insurance/Result/Final Audit/policybazaar-{SLUG}-content-audit-{AUDIT_DATE}.md`
 4. Write the structured JSON to:
-   `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Travel Insurance/Result/audit-data/{SLUG}.json`
+   `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Travel Insurance/Result/Final Audit/audit-data/{SLUG}.json`
    Top-level keys (ALL required): url, slug, page_type, tier, audit_date, mode ("URL"),
    md_file, scores {seo, geo, human_likeness, ymyl, fact_check, overall — numbers},
    parameters [{lens, name, score, max, status, finding}],
@@ -54,7 +54,7 @@
    Every checkable fact on the page (price, %, coverage limit, visa requirement,
    deadline, regulatory claim, platform figure) gets a ledger_entry. fact_key is a
    normalized kebab-case key for the UNDERLYING fact, not the page's phrasing. FIRST read
-   `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Travel Insurance/Result/audit-data/fact-keys.md`
+   `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Travel Insurance/Result/Final Audit/audit-data/fact-keys.md`
    (if it doesn't exist, treat the registry as empty) and reuse an existing key when the
    fact matches; if none matches, invent a precise new key (the collector registers it).
    For facts with

@@ -1,7 +1,7 @@
 # /travel-audit-batch — run one batch of the travel-insurance content audit
 
 Working dir for all commands: `tools/travel-audit/` in the PolicyBazaar Claude workspace.
-State + outputs live in `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Travel Insurance/Result/`.
+State + outputs live in `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Travel Insurance/Result/Final Audit/` (the pipeline's self-contained working directory since 2026-07-10 — ledger, per-URL JSON, master xlsx, tracker, and per-URL reports all live there; `Result/` root above it holds only older/unrelated files).
 
 **Cadence: manually invoked by Aakash, gauged by his usage dashboard** (Settings →
 Usage on claude.ai), not an automated loop. Same two-limit model as the health audit:

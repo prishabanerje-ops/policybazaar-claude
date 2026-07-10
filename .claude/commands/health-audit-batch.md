@@ -1,7 +1,9 @@
 # /health-audit-batch — run one batch of the health-insurance content audit
 
 Working dir for all commands: `tools/health-audit/` in the PolicyBazaar Claude workspace.
-State + outputs live in `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Health Insurance/Result/`.
+State + outputs live in `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Health Insurance/Result/Final Audit/` (the pipeline's self-contained working directory since 2026-07-10 — ledger, per-URL JSON, master xlsx, tracker, and per-URL reports all live there; `Result/` root above it holds only older/unrelated files).
+
+**Reset 2026-07-10:** the ledger was reset to 0/990 pending and relocated into `Final Audit/` at Aakash's request — any prior "done" status no longer applies; every URL is being re-audited from scratch.
 
 **Cadence: manually invoked by Aakash, gauged by his usage dashboard** (Settings →
 Usage on claude.ai), not an automated loop. This account has two separate limits:
