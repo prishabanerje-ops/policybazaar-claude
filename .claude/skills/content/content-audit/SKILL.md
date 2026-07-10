@@ -297,6 +297,38 @@ instead). If the page doesn't say which it means, flag the ambiguity itself as t
 
 ---
 
+## Step 2.6 — Interlink Opportunity Analysis (two-way)
+
+Runs after the five lenses. Produces an actionable link work-list, not a score —
+SEO Parameter 7 still scores the page's *current* internal linking; this step turns
+the gaps into concrete suggestions.
+
+**OUTBOUND — links this page should add:**
+1. List the page's main subtopics and named entities (from its H2/H3s and body).
+2. `grep` `assets/policybazaar-urls.txt` (and the vertical's sitemap snapshot in
+   `tools/<vertical>-audit/`) for 2–3 keyword fragments per subtopic.
+3. For each clearly relevant existing page the content does NOT already link to,
+   suggest: target URL · natural descriptive anchor text (never "click here") ·
+   placement (which section/heading it belongs in) · one-line why.
+4. 3–8 suggestions, best-first — quality over quantity. **Every target URL must
+   exist in the asset list or sitemap snapshot; never invent or guess a URL.**
+
+**INBOUND — pages that should link TO this page (candidates):**
+1. `grep` the same lists for topically adjacent pages: the parent hub, sibling
+   product/destination pages, and articles on this page's primary topic.
+2. Suggest 3–5 source candidates with anchor text and rationale. Status is always
+   **"candidate — verify source page"**: the source page hasn't been fetched, so
+   confirm the link doesn't already exist there before acting.
+
+**Mode/tier scope:** URL MODE runs both directions. FILE MODE runs outbound only
+(a draft can add links; inbound analysis needs the live URL). Tier B batch audits
+(light pass): outbound only, max 3 suggestions.
+
+Output in the report (Step 4 section) and, for pipeline audits, in the JSON key
+`interlink_opportunities`.
+
+---
+
 ## Step 3 — Calculate Overall Score
 
 ```
@@ -502,6 +534,29 @@ text verbatim.
 
 ---
 
+### Interlink Opportunities
+
+```markdown
+## 🔗 Interlink Opportunities
+
+**Outbound — links to add to this page:**
+
+| # | Link to | Suggested anchor | Placement | Why |
+|---|---|---|---|---|
+| 1 | [/travel-insurance/france-visa/](…) | *"France visa insurance requirements"* | Schengen requirements section | Page cites France's rules but never links the dedicated page. |
+
+**Inbound — candidate source pages that should link here** (status: candidate — verify source page before adding):
+
+| # | From page | Suggested anchor | Why |
+|---|---|---|---|
+| 1 | [/travel-insurance/](…) | *"single-trip travel insurance"* | Hub lists plan types but doesn't deep-link this one. |
+```
+
+FILE MODE / Tier B: outbound table only. If no genuine opportunities exist, say so
+in one line — don't pad the tables.
+
+---
+
 ### Priority Recommendations
 
 ```markdown
@@ -550,6 +605,7 @@ Full Step 4 report content, plus the schema deep-dive and a verification ledger
   | Fact-Check | URL · Claim · Verification · Correct Value (source, date) · Source Tier · Status · Fix |
   | Schema | URL · inventory + findings from the implemented-schema audit |
   | Priority Recs | URL · Priority · Action |
+  | Interlinks | URL · Direction · Other Page · Suggested Anchor · Placement · Why · Status |
   | Verification Ledger | Vertical-wide verified figures with source + tier |
 
 **Save locations (verified — the doubled "Documents/Documents" is correct):**

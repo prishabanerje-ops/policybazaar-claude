@@ -17,6 +17,12 @@ LIST_ITEM_KEYS = {
     "schema_audit": {"row_type", "type_or_severity", "parse", "parity", "detail"},
     "priority_recs": {"priority", "issue", "action"},
 }
+# Optional lists: absent key is valid (audits collected before the key existed),
+# but present items must carry the full field set.
+OPTIONAL_LIST_KEYS = {
+    "interlink_opportunities": {"direction", "other_url", "anchor_text",
+                                "placement", "rationale", "status"},
+}
 
 
 def validate_audit_json(data):
@@ -40,6 +46,20 @@ def validate_audit_json(data):
         items = data.get(list_key)
         if not isinstance(items, list):
             continue  # missing/wrong type already reported by the TOP_KEYS check
+        for i, item in enumerate(items):
+            if not isinstance(item, dict):
+                errors.append(f"{list_key}[{i}] is not an object")
+                continue
+            missing = item_keys - item.keys()
+            if missing:
+                errors.append(f"{list_key}[{i}] missing {sorted(missing)}")
+    for list_key, item_keys in OPTIONAL_LIST_KEYS.items():
+        if list_key not in data:
+            continue
+        items = data[list_key]
+        if not isinstance(items, list):
+            errors.append(f"{list_key!r} should be list, got {type(items).__name__}")
+            continue
         for i, item in enumerate(items):
             if not isinstance(item, dict):
                 errors.append(f"{list_key}[{i}] is not an object")

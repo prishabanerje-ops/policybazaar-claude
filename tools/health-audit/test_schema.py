@@ -25,6 +25,13 @@ def sample_audit():
                           "parse": "valid", "parity": "matches page",
                           "detail": "8 Q-A pairs"}],
         "priority_recs": [{"priority": "High", "issue": "meta", "action": "rewrite"}],
+        "interlink_opportunities": [
+            {"direction": "outbound",
+             "other_url": "https://www.policybazaar.ae/health-insurance/dubai/",
+             "anchor_text": "health insurance in Dubai",
+             "placement": "Coverage by emirate section",
+             "rationale": "page discusses Dubai mandates but never links the Dubai hub",
+             "status": "verified-target"}],
     }
 
 
@@ -62,3 +69,22 @@ def test_non_list_value_reports_one_type_error_not_per_character_noise():
     errors = validate_audit_json(data)
     assert any("'findings' should be list" in e for e in errors)
     assert not any("findings[" in e for e in errors)
+
+
+def test_missing_interlinks_key_is_valid_for_legacy_audits():
+    data = sample_audit()
+    del data["interlink_opportunities"]
+    assert validate_audit_json(data) == []
+
+
+def test_interlink_item_missing_field_is_reported():
+    data = sample_audit()
+    del data["interlink_opportunities"][0]["anchor_text"]
+    assert any("interlink_opportunities[0]" in e for e in validate_audit_json(data))
+
+
+def test_interlinks_non_list_is_reported():
+    data = sample_audit()
+    data["interlink_opportunities"] = "oops"
+    assert any("'interlink_opportunities' should be list" in e
+               for e in validate_audit_json(data))

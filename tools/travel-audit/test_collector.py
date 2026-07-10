@@ -153,6 +153,45 @@ def test_ledger_dedupes_across_separate_collect_runs(tmp_path):
     assert ledger.max_row == 2  # header + one row — fact_key already registered
 
 
+def test_interlink_rows_land_in_interlinks_sheet(tmp_path):
+    state_csv, data_dir, xlsx, fact_keys = setup_run(tmp_path)
+    collect(state_csv, data_dir, xlsx, fact_keys)
+    ws = load_workbook(xlsx)["Interlinks"]
+    url, day = sample_audit()["url"], sample_audit()["audit_date"]
+    assert [c.value for c in ws[2]] == [
+        url, day, "outbound", "https://www.policybazaar.ae/health-insurance/dubai/",
+        "health insurance in Dubai", "Coverage by emirate section",
+        "page discusses Dubai mandates but never links the Dubai hub",
+        "verified-target"]
+
+
+def test_legacy_json_without_interlinks_key_still_collects(tmp_path):
+    state_csv, data_dir, xlsx, fact_keys = setup_run(tmp_path)
+    data = sample_audit()
+    del data["interlink_opportunities"]
+    (data_dir / "health-insurance.json").write_text(json.dumps(data))
+    done, failed = collect(state_csv, data_dir, xlsx, fact_keys)
+    assert len(done) == 1 and failed == []
+    assert load_workbook(xlsx)["Interlinks"].max_row == 1  # header only
+
+
+def test_legacy_workbook_gains_interlinks_sheet(tmp_path):
+    state_csv, data_dir, xlsx, fact_keys = setup_run(tmp_path)
+    from openpyxl import Workbook
+    wb = Workbook()
+    wb.remove(wb.active)
+    for name, cols in SHEET_COLUMNS.items():
+        if name == "Interlinks":
+            continue  # simulate a workbook created before the sheet existed
+        wb.create_sheet(name).append(cols)
+    wb.save(xlsx)
+    done, failed = collect(state_csv, data_dir, xlsx, fact_keys)
+    assert len(done) == 1 and failed == []
+    ws = load_workbook(xlsx)["Interlinks"]
+    assert [c.value for c in ws[1]] == SHEET_COLUMNS["Interlinks"]
+    assert ws.max_row == 2  # header + the audit's interlink row
+
+
 def test_header_mismatch_exits_loudly_before_any_append(tmp_path):
     import pytest
     state_csv, data_dir, xlsx, fact_keys = setup_run(tmp_path)

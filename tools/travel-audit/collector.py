@@ -20,6 +20,8 @@ SHEET_COLUMNS = {
     "Schema": ["URL", "Audit Date", "Row Type", "@type / Severity", "Parse",
                "Parity", "Detail"],
     "Priority Recs": ["URL", "Audit Date", "Priority", "Action"],
+    "Interlinks": ["URL", "Audit Date", "Direction", "Other Page",
+                   "Suggested Anchor", "Placement", "Why", "Status"],
     "Verification Ledger": ["Figure", "Value", "Source", "Tier",
                             "First Verified For", "Date"],
 }
@@ -62,6 +64,10 @@ def rows_for(d):
                     i["parity"], i["detail"]] for i in d["schema_audit"]],
         "Priority Recs": [[url, day, r["priority"], f"{r['issue']} → {r['action']}"]
                           for r in d["priority_recs"]],
+        # Optional key — audits collected before interlinks existed have no rows.
+        "Interlinks": [[url, day, i["direction"], i["other_url"], i["anchor_text"],
+                        i["placement"], i["rationale"], i["status"]]
+                       for i in d.get("interlink_opportunities", [])],
     }
 
 
@@ -88,8 +94,11 @@ def ensure_workbook(path):
         wb = load_workbook(path)
         for name, cols in SHEET_COLUMNS.items():
             if name not in wb.sheetnames:
-                sys.exit(f"master workbook {path} is missing sheet {name!r} — "
-                         "align SHEET_COLUMNS with the existing workbook before collecting")
+                # Sheet added after the workbook was created (e.g. Interlinks,
+                # 2026-07-10) — migrate by creating it; header mismatches on
+                # existing sheets still exit loudly below.
+                wb.create_sheet(name).append(cols)
+                continue
             header = [c.value for c in wb[name][1]]
             if header != cols:
                 sys.exit(f"sheet {name!r} header mismatch:\n  workbook: {header}\n"

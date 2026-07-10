@@ -156,6 +156,8 @@ Count keyword occurrences ÷ total word count × 100.
   own subtopics. If
   a clearly relevant, real existing page turns up that the content does NOT link to,
   flag it as a missed opportunity — don't just score what's present, catch what's absent.
+  This parameter only SCORES the gap; the full actionable list (anchor text, placement,
+  inbound candidates) goes in the skill's Step 2.6 Interlink Opportunities section.
 
 **Scoring:**
 | Condition | Points |

@@ -23,6 +23,11 @@
      fact-check ONLY claims unique to this page. Score all five lenses but write
      "Tier B light audit" under the report header. Template-level findings are covered
      by the family's representative page — do not repeat them.
+
+   Then run the skill's Step 2.6 two-way interlink analysis: OUTBOUND suggestions
+   verified against the URL asset / sitemap snapshot (never invent a URL), INBOUND
+   candidates marked "candidate-verify-source". Tier A: both directions. Tier B:
+   outbound only, max 3.
 3. Write the full report (skill Step 4 format) to:
    `/Users/aakashsrivastava/Documents/Documents/PolicyBazaar Research/Travel Insurance/Result/policybazaar-{SLUG}-content-audit-{AUDIT_DATE}.md`
 4. Write the structured JSON to:
@@ -34,7 +39,10 @@
    fact_checks [{claim, verification, correct_value, source, source_tier, status, fix}],
    ledger_entries [{fact_key, page_value, verified_value, source, source_tier, status}],
    schema_audit [{row_type, type_or_severity, parse, parity, detail}],
-   priority_recs [{priority, issue, action}].
+   priority_recs [{priority, issue, action}],
+   interlink_opportunities [{direction ("outbound"|"inbound-candidate"), other_url,
+   anchor_text, placement, rationale, status ("verified-target"|"candidate-verify-source")}]
+   — empty list if no genuine opportunities.
 
    The schema_audit field contains one entry per schema row from the implemented-schema
    deep-dive. row_type indicates whether a row is "implemented" or "expected-missing"
