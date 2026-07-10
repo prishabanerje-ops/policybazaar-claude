@@ -1,0 +1,276 @@
+# GEO Parameters — Scoring Reference
+
+Full definitions and rubrics for the 9 GEO (Generative Engine Optimization) parameters
+used in `/content-audit`.
+
+GEO is the practice of optimizing content so that AI search engines (ChatGPT, Perplexity,
+Google AI Overviews, Gemini, Claude) cite it in their responses. The goal shifts from
+"ranking on a search results page" to "being the data source an AI assistant trusts enough
+to quote."
+
+---
+
+## Background: Why GEO Matters for Policybazaar UAE (Health & Travel)
+
+- AI Overview keywords grew from 1.5% → ~32% of searches in 12 months (Sep 2024–Sep 2025)
+- AI search platform visits grew 42.8% YoY vs Google's 2.4%
+- YMYL (Your Money or Your Life) content — which both health and travel insurance
+  are — gets stricter AI scrutiny
+- ChatGPT is now a trackable traffic channel for the brand
+- The foundational GEO study (Aggarwal et al., ACM KDD 2024, 10,000 queries) found
+  that adding statistics, citations, and quotations improved AI engine visibility by up to 40%
+- Despite AI-assisted content being roughly half of new web publishing volume, ~86% of
+  top-ranking Google results and ~82% of ChatGPT/Perplexity citations are human-written —
+  what separates the winners isn't authorship, it's original data, visible credentials,
+  and a specific (not generic) angle. Parameter 7 below scores that directly.
+
+---
+
+## 1. Direct-Answer Formatting (15 pts)
+
+**What it is:** AI engines scan content for the fastest path to a usable answer.
+Content that leads each section with a direct answer (before elaborating) gets cited more.
+
+**What to check:**
+- Does the intro paragraph answer the core question within the first 2–3 sentences?
+- Do H2/H3 sections start with a direct 1–2 sentence answer before expanding?
+- Are definitions given upfront? e.g. "Health insurance in UAE covers..." (not "Health insurance is a complex topic...")
+- Is there an "Answer first, context second" structure throughout?
+- No buried-lede pattern (answer hidden in paragraph 5 of a 7-paragraph section)
+
+**UAE insurance example:**
+✅ "The minimum health insurance requirement in UAE is a basic plan that covers emergency care, as mandated by the Dubai Health Authority for all residents."
+❌ "Health insurance requirements in UAE have evolved over the years as regulations have developed across different emirates..."
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| Every major section leads with a direct answer; intro answers the primary query in 2 sentences | 15 |
+| Most sections have direct answers; 1–2 buried-lede violations | 10–14 |
+| Some direct answers but inconsistent — half the sections bury the lead | 5–9 |
+| No direct-answer structure; everything is context-first | 0–4 |
+
+---
+
+## 2. E-E-A-T Signals (15 pts)
+
+**What it is:** Experience, Expertise, Authoritativeness, Trustworthiness. AI engines
+weight YMYL content especially hard on E-E-A-T. See `references/eeat-framework.md`
+for the full YMYL/insurance scoring rubric.
+
+**What to check:**
+- **Experience:** Does the content show real-world familiarity? (specific examples, edge cases, "from our data")
+- **Expertise:** Is there an author attribution with credentials? Expert quotes? Accurate technical detail?
+- **Authoritativeness:** Are authoritative sources cited? (DHA, MOH, official UAE government sites, licensed insurers)
+- **Trustworthiness:** Is there a last-updated date? Transparent methodology? No exaggerated claims?
+- Brand signals: is Policybazaar UAE identified as a licensed insurance aggregator?
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| Author + credentials + official sources cited + last-updated date + brand license signal | 15 |
+| 3 of 4 E-E-A-T pillars demonstrated | 10–14 |
+| 2 of 4 pillars | 5–9 |
+| Generic content with no E-E-A-T signals | 0–4 |
+
+---
+
+## 3. Entity Clarity (10 pts)
+
+**What it is:** AI engines build knowledge graphs. Content that clearly identifies
+entities (brand names, products, places, regulations, people) and their relationships
+gets extracted and cited more reliably.
+
+**What to check:**
+- Are product/plan names precise? ("Daman Thiqa" not "a network plan")
+- Are regulatory bodies named precisely? (DHA, HAAD → now DOH, MOH)
+- Are geographic entities specific? ("Abu Dhabi" not "the UAE capital")
+- Is Policybazaar UAE identified as a distinct entity from Policybazaar India?
+- Are insurance terms defined on first use with their local UAE context?
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| All major entities named precisely; regulatory/geographic clarity throughout | 10 |
+| Most entities clear; 1–2 vague references | 6–9 |
+| Several vague or conflated entities | 3–5 |
+| Generic entity usage throughout (just "insurance companies", "the government") | 0–2 |
+
+---
+
+## 4. Conversational Q&A Coverage (15 pts)
+
+**What it is:** AI engines are prompted with questions. Content that contains
+explicit question-and-answer pairs has a structural advantage for being cited.
+
+**What to check:**
+- Are FAQ sections present with real questions (not vanity questions)?
+- Do questions match how people actually ask? (conversational, "how much does...", "can I...")
+- Are answers concise enough to be quoted? (under 3 sentences is ideal for AI citations)
+- Is voice-search phrasing used? ("What is the best health insurance in Dubai for a family of 4?")
+- Coverage of long-tail question variants?
+- **Verifying "real" vs. invented (NEW):** when auditing a URL and genuine verification
+  matters, `web_search` the topic alongside "reddit" or "quora," and search the topic
+  phrase directly to check Google's "People Also Ask" pattern. If the page's FAQ
+  questions closely match what real users actually ask on these sources, that's a strong
+  positive signal. If the questions read as plausible-sounding but don't match anything
+  findable in real search behavior, treat that as a specificity/genericness flag, not
+  just a phrasing style note. (`content-brief` sources FAQ questions this way at the
+  planning stage — see its `SKILL.md` — so content built from a brief should already
+  pass this check by construction.)
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| 5+ genuine Q&A pairs, conversational phrasing, concise answers | 15 |
+| 3–4 Q&A pairs, mostly well-phrased | 10–14 |
+| 1–2 Q&A pairs, or FAQ section with vague/generic questions | 5–9 |
+| No Q&A structure | 0–4 |
+
+---
+
+## 5. Statistics & Citations (10 pts)
+
+**What it is:** The foundational GEO academic study found statistics and citations
+improve AI engine visibility by up to 40%. Numbers make claims quotable and verifiable.
+
+**What to check:**
+- Are specific statistics present? (percentages, prices, dates, counts)
+- Are claims sourced? (even informal attribution: "according to DHA guidelines")
+- Are statistics recent? (not "in 2019...")
+- Are UAE-specific numbers used vs. generic global statistics?
+- No made-up or unverifiable statistics
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| 3+ UAE-specific, recent, attributed statistics | 10 |
+| 2 statistics or 1 well-cited stat | 6–9 |
+| 1 vague or unattributed statistic | 3–5 |
+| No statistics or only global/generic numbers | 0–2 |
+
+---
+
+## 6. Schema / Structured Data Mentions (10 pts)
+
+**What it is:** Content that signals schema-readiness (through its structure, not
+necessarily implemented code) gets better AI parsing. This parameter evaluates
+whether the content's architecture maps to schema types.
+
+**What to check:**
+- FAQ structure present → FAQ schema-ready
+- Numbered steps → HowTo schema-ready
+- Author + date → Article schema-ready
+- Plan comparisons with prices → FinancialProduct schema-ready
+- Reviews / ratings → Review schema-ready
+- Breadcrumb logic in content flow
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| Content maps to 3+ schema types; author, date, and structured sections present | 10 |
+| 2 schema types signaled | 6–9 |
+| 1 schema type | 3–5 |
+| No schema-friendly structure | 0–2 |
+
+---
+
+## 7. Content Depth & Original Angle (10 pts)
+
+**What it is:** AI engines prefer comprehensive, differentiated sources. This parameter
+covers two related risks: content too shallow to fully answer the query, and content
+that's long enough but says nothing a ranking competitor page doesn't already say.
+**Depth is about density, not raw word count** — a tight 1,200-word page with genuine
+detail should score higher than a padded 2,000-word page that restates the same point.
+
+**What to check (Depth & Density — up to 5 pts):**
+- All major sub-topics covered (no obvious gaps an AI would need to fill from elsewhere)
+- Real case studies, examples, or scenarios — not just abstract definitions
+- Technical terms defined in context; multiple user intent angles covered
+- Word count is a floor to check (1,500+ words for GEO-focused guides/blogs), not the
+  scoring target itself — a dense 1,200-word page can outscore a padded 2,000-word one
+
+**What to check (Original Angle — up to 5 pts):**
+- Does the content include at least one fact, data point, named example, or firsthand
+  detail that isn't standard/generic coverage already on ranking competitor pages?
+- **The clearest fail signal:** could this draft be published on a competitor's site with
+  a find-and-replace of the brand name? If yes, it has no original angle regardless of length.
+- Is there a point of view, not just a restatement of consensus information?
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| 1,500+ words (or dense equivalent), comprehensive sub-topic coverage, examples, multiple intent angles, AND a clear original angle vs. generic competitor coverage | 9–10 |
+| Strong on depth OR original angle, weaker on the other | 6–8 |
+| 1,000–1,499 words, mostly comprehensive, but reads as generic/interchangeable with competitors | 3–5 |
+| Under 500 words, or comprehensive word count but shallow and could be find-replaced onto any competitor site | 0–2 |
+
+---
+
+## 8. Semantic Heading Use (10 pts)
+
+**What it is:** AI engines use headings as a content map. Headings that contain
+question phrases, entity names, and semantic keywords (not just generic labels)
+are more likely to be used as citation anchors.
+
+**What to check:**
+- Do H2s contain meaningful keywords or question phrases?
+- Do headings progress logically (tell a story from general → specific)?
+- Are headings informative enough to stand alone as a content summary?
+- **The generic-heading test:** would this heading, unchanged, fit equally well on an
+  article about a completely different topic? If yes, flag it — regardless of which
+  specific phrase is used. This is a test, not just a list, since new templated
+  headings show up that won't be in any fixed list.
+- No heading-as-clickbait ("You Won't Believe What Health Insurance Costs in UAE")
+
+**Good semantic headings:**
+✅ "How Much Does Health Insurance Cost in Dubai? (2025 Prices)"
+✅ "What Does UAE Health Insurance Cover by Law?"
+✅ "Health Insurance for Expats in Abu Dhabi: What You Need to Know"
+✅ "What's the Minimum Salary for a Personal Loan in UAE?"
+✅ "How Does Your AECB Credit Score Affect Loan Approval?"
+
+**Generic headings to flag** (fails the test above — not exhaustive, apply the test to
+anything not listed):
+❌ Introduction / Overview
+❌ Conclusion / Summary / In Summary / Final Thoughts / Wrapping Up
+❌ More Details / More Information
+❌ FAQ Section (redundant phrasing — a bare "FAQs" label is fine, it's a real block, not a vanity heading)
+❌ Why Buy From Us / Why Choose Us / Why Choose [Brand]
+❌ Benefits / Key Features (bare, with no topic attached)
+❌ How It Works (bare, with no topic attached)
+❌ Get Started
+
+Note the distinction: "What You Need to Know" is fine when it's attached to a specific
+topic (see the good example above) — it's only generic when it's the *entire* heading
+with nothing topic-specific in it.
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| All headings semantic, keyword-rich, informative standalone | 10 |
+| Most headings good, 1–2 generic | 6–9 |
+| Mixed — half semantic, half generic | 3–5 |
+| Generic or vanity headings throughout | 0–2 |
+
+---
+
+## 9. Brand / Source Credibility Signals (5 pts)
+
+**What it is:** AI engines assess source credibility before citing. Content from
+an identifiable, licensed brand with clear contact signals gets higher citation trust.
+
+**What to check:**
+- Is the brand name (Policybazaar UAE) mentioned explicitly?
+- Is the brand identified as a licensed insurance aggregator (not just a "comparison site")?
+- Is a regulatory or license reference present?
+- Is there a trust signal (years in market, number of plans compared, customer reviews)?
+- No anonymous authorship ("the team" without a name)
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| Brand named + licensed aggregator identified + trust signal + author | 5 |
+| 2–3 of the above | 3–4 |
+| Only brand name present | 1–2 |
+| Anonymous or no brand signals | 0 |
