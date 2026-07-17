@@ -662,7 +662,7 @@ Read the relevant file before scoring each lens:
 - `references/seo-parameters.md` — 12 SEO parameters, scoring rubrics, FILE vs URL MODE rules, UAE examples
 - `references/schema-expectations-health.md` — page-type schema stacks, known bugs, and excluded/blocklisted types for policybazaar.ae health URLs (distilled from workspace SCHEMA-PLAN.md, 2026-07-06)
 - `references/schema-expectations-travel.md` — same for travel URLs: implemented-today baseline, expected stacks per page type, travel-specific bugs (T1–T11), blocklist (built from live fetches of 12 representative pages, 2026-07-10)
-- `references/geo-parameters.md` — 9 GEO parameters, FILE MODE E-E-A-T scope, UAE insurance context
+- `references/geo-parameters.md` — 11 GEO parameters, FILE MODE E-E-A-T scope, UAE insurance context
 - `references/ai-detection-parameters.md` — 9 AI signals, evidence format, detector-reliability caveats, insurance-specific banned vocab
 - `references/eeat-framework.md` — Full E-E-A-T rubric for YMYL/insurance; FILE MODE vs URL MODE split
 - `references/ymyl-helpful-content.md` — YMYL compliance + Google Helpful Content parameters (NEW)

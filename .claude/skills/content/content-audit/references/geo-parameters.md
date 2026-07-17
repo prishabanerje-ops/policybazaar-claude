@@ -1,6 +1,6 @@
 # GEO Parameters — Scoring Reference
 
-Full definitions and rubrics for the 9 GEO (Generative Engine Optimization) parameters
+Full definitions and rubrics for the 11 GEO (Generative Engine Optimization) parameters
 used in `/content-audit`.
 
 GEO is the practice of optimizing content so that AI search engines (ChatGPT, Perplexity,
