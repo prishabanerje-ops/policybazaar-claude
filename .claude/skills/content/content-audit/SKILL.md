@@ -121,19 +121,24 @@ remaining parameters proportionally so the SEO score still totals 100.**
 
 ### Lens 2: GEO Score (0–100)
 
-Read `references/geo-parameters.md` for full parameter definitions.
+Read `references/geo-parameters.md` for full parameter definitions. See that file's
+"Out of Scope: Technical AI-Citation Factors" section for what this lens does NOT
+score (crawler accessibility, live AI-search rank, JS-rendering visibility, domain
+authority, llms.txt) — those belong to the `seo` skill's technical audit.
 
 | # | Parameter | Max Points |
 |---|---|---|
 | 1 | Direct-Answer Formatting | 15 |
-| 2 | E-E-A-T Signals | 15 |
-| 3 | Entity Clarity | 10 |
+| 2 | E-E-A-T Signals | 11 |
+| 3 | Entity Clarity | 6 |
 | 4 | Conversational Q&A Coverage | 15 |
 | 5 | Statistics & Citations | 10 |
-| 6 | Schema / Structured Data Mentions | 10 |
-| 7 | Content Depth & Original Angle (1,500+ words, differentiated) | 10 |
-| 8 | Semantic Heading Use | 10 |
-| 9 | Brand / Source Credibility Signals | 5 |
+| 6 | Schema / Structured Data Mentions | 6 |
+| 7 | Content Depth & Original Angle (1,500+ words, differentiated) | 8 |
+| 8 | Semantic Heading Use | 6 |
+| 9 | Brand / Source Credibility Signals | 3 |
+| 10 | Fan-out Rank | 12 |
+| 11 | Freshness | 8 |
 
 **⚠️ E-E-A-T Signals (Parameter 2) — FILE MODE scope:**
 In FILE MODE, do NOT check: author name/credentials, publish/last-updated date,
@@ -141,6 +146,8 @@ DHA/MOH citations, license signal. These are added at publishing, not by the wri
 Instead, score Parameter 2 only on: firsthand experience signals in the writing,
 accurate technical detail, content aligned with current consensus, and transparent
 methodology. See `references/eeat-framework.md` for FILE MODE scoring rubric.
+Currency/freshness is scored separately under Parameter 11 (Freshness), which has
+its own FILE MODE rule.
 
 In URL MODE, check all E-E-A-T signals as defined in the full rubric.
 
