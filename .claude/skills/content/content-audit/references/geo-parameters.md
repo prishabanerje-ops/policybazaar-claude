@@ -64,7 +64,7 @@ Content that leads each section with a direct answer (before elaborating) gets c
 
 ---
 
-## 2. E-E-A-T Signals (15 pts)
+## 2. E-E-A-T Signals (11 pts)
 
 **What it is:** Experience, Expertise, Authoritativeness, Trustworthiness. AI engines
 weight YMYL content especially hard on E-E-A-T. See `references/eeat-framework.md`
@@ -74,20 +74,20 @@ for the full YMYL/insurance scoring rubric.
 - **Experience:** Does the content show real-world familiarity? (specific examples, edge cases, "from our data")
 - **Expertise:** Is there an author attribution with credentials? Expert quotes? Accurate technical detail?
 - **Authoritativeness:** Are authoritative sources cited? (DHA, MOH, official UAE government sites, licensed insurers)
-- **Trustworthiness:** Is there a last-updated date? Transparent methodology? No exaggerated claims?
+- **Trustworthiness:** Transparent methodology? No exaggerated claims? (Currency/last-updated date is scored separately — see Parameter 11, Freshness.)
 - Brand signals: is Policybazaar UAE identified as a licensed insurance aggregator?
 
 **Scoring:**
 | Condition | Points |
 |---|---|
-| Author + credentials + official sources cited + last-updated date + brand license signal | 15 |
-| 3 of 4 E-E-A-T pillars demonstrated | 10–14 |
-| 2 of 4 pillars | 5–9 |
-| Generic content with no E-E-A-T signals | 0–4 |
+| Author + credentials + official sources cited + brand license signal (all 4 E-E-A-T pillars) | 11 |
+| 3 of 4 E-E-A-T pillars demonstrated | 7–10 |
+| 2 of 4 pillars | 3–6 |
+| Generic content with no E-E-A-T signals | 0–2 |
 
 ---
 
-## 3. Entity Clarity (10 pts)
+## 3. Entity Clarity (6 pts)
 
 **What it is:** AI engines build knowledge graphs. Content that clearly identifies
 entities (brand names, products, places, regulations, people) and their relationships
@@ -103,10 +103,10 @@ gets extracted and cited more reliably.
 **Scoring:**
 | Condition | Points |
 |---|---|
-| All major entities named precisely; regulatory/geographic clarity throughout | 10 |
-| Most entities clear; 1–2 vague references | 6–9 |
-| Several vague or conflated entities | 3–5 |
-| Generic entity usage throughout (just "insurance companies", "the government") | 0–2 |
+| All major entities named precisely; regulatory/geographic clarity throughout | 6 |
+| Most entities clear; 1–2 vague references | 4–5 |
+| Several vague or conflated entities | 2–3 |
+| Generic entity usage throughout (just "insurance companies", "the government") | 0–1 |
 
 ---
 
@@ -163,7 +163,7 @@ improve AI engine visibility by up to 40%. Numbers make claims quotable and veri
 
 ---
 
-## 6. Schema / Structured Data Mentions (10 pts)
+## 6. Schema / Structured Data Mentions (6 pts)
 
 **What it is:** Content that signals schema-readiness (through its structure, not
 necessarily implemented code) gets better AI parsing. This parameter evaluates
@@ -180,14 +180,14 @@ whether the content's architecture maps to schema types.
 **Scoring:**
 | Condition | Points |
 |---|---|
-| Content maps to 3+ schema types; author, date, and structured sections present | 10 |
-| 2 schema types signaled | 6–9 |
-| 1 schema type | 3–5 |
-| No schema-friendly structure | 0–2 |
+| Content maps to 3+ schema types; author, date, and structured sections present | 6 |
+| 2 schema types signaled | 4–5 |
+| 1 schema type | 2–3 |
+| No schema-friendly structure | 0–1 |
 
 ---
 
-## 7. Content Depth & Original Angle (10 pts)
+## 7. Content Depth & Original Angle (8 pts)
 
 **What it is:** AI engines prefer comprehensive, differentiated sources. This parameter
 covers two related risks: content too shallow to fully answer the query, and content
@@ -195,14 +195,14 @@ that's long enough but says nothing a ranking competitor page doesn't already sa
 **Depth is about density, not raw word count** — a tight 1,200-word page with genuine
 detail should score higher than a padded 2,000-word page that restates the same point.
 
-**What to check (Depth & Density — up to 5 pts):**
+**What to check (Depth & Density — up to 4 pts):**
 - All major sub-topics covered (no obvious gaps an AI would need to fill from elsewhere)
 - Real case studies, examples, or scenarios — not just abstract definitions
 - Technical terms defined in context; multiple user intent angles covered
 - Word count is a floor to check (1,500+ words for GEO-focused guides/blogs), not the
   scoring target itself — a dense 1,200-word page can outscore a padded 2,000-word one
 
-**What to check (Original Angle — up to 5 pts):**
+**What to check (Original Angle — up to 4 pts):**
 - Does the content include at least one fact, data point, named example, or firsthand
   detail that isn't standard/generic coverage already on ranking competitor pages?
 - **The clearest fail signal:** could this draft be published on a competitor's site with
@@ -212,14 +212,14 @@ detail should score higher than a padded 2,000-word page that restates the same 
 **Scoring:**
 | Condition | Points |
 |---|---|
-| 1,500+ words (or dense equivalent), comprehensive sub-topic coverage, examples, multiple intent angles, AND a clear original angle vs. generic competitor coverage | 9–10 |
-| Strong on depth OR original angle, weaker on the other | 6–8 |
-| 1,000–1,499 words, mostly comprehensive, but reads as generic/interchangeable with competitors | 3–5 |
-| Under 500 words, or comprehensive word count but shallow and could be find-replaced onto any competitor site | 0–2 |
+| 1,500+ words (or dense equivalent), comprehensive sub-topic coverage, examples, multiple intent angles, AND a clear original angle vs. generic competitor coverage | 7–8 |
+| Strong on depth OR original angle, weaker on the other | 5–6 |
+| 1,000–1,499 words, mostly comprehensive, but reads as generic/interchangeable with competitors | 2–4 |
+| Under 500 words, or comprehensive word count but shallow and could be find-replaced onto any competitor site | 0–1 |
 
 ---
 
-## 8. Semantic Heading Use (10 pts)
+## 8. Semantic Heading Use (6 pts)
 
 **What it is:** AI engines use headings as a content map. Headings that contain
 question phrases, entity names, and semantic keywords (not just generic labels)
@@ -260,14 +260,14 @@ with nothing topic-specific in it.
 **Scoring:**
 | Condition | Points |
 |---|---|
-| All headings semantic, keyword-rich, informative standalone | 10 |
-| Most headings good, 1–2 generic | 6–9 |
-| Mixed — half semantic, half generic | 3–5 |
-| Generic or vanity headings throughout | 0–2 |
+| All headings semantic, keyword-rich, informative standalone | 6 |
+| Most headings good, 1–2 generic | 4–5 |
+| Mixed — half semantic, half generic | 2–3 |
+| Generic or vanity headings throughout | 0–1 |
 
 ---
 
-## 9. Brand / Source Credibility Signals (5 pts)
+## 9. Brand / Source Credibility Signals (3 pts)
 
 **What it is:** AI engines assess source credibility before citing. Content from
 an identifiable, licensed brand with clear contact signals gets higher citation trust.
@@ -282,9 +282,9 @@ an identifiable, licensed brand with clear contact signals gets higher citation 
 **Scoring:**
 | Condition | Points |
 |---|---|
-| Brand named + licensed aggregator identified + trust signal + author | 5 |
-| 2–3 of the above | 3–4 |
-| Only brand name present | 1–2 |
+| Brand named + licensed aggregator identified + trust signal + author | 3 |
+| 2–3 of the above | 2 |
+| Only brand name present | 1 |
 | Anonymous or no brand signals | 0 |
 
 ---
