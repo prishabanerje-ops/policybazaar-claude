@@ -188,6 +188,14 @@ content? This is where content quality meets editorial integrity.
 | 1 trust signal | 5–9 |
 | No trust signals, or active red flags (misleading claims) | 0–4 |
 
+**Overlap note:** GEO Parameter 11 (Freshness, in `geo-parameters.md`) also scores
+currency of time-sensitive claims independently. This pillar's "last-updated date
+visible" signal is one of several general trustworthiness markers (alongside
+commercial disclosure, balanced coverage, accurate claims); GEO Parameter 11
+specifically checks whether individual price/regulatory claims carry as-of framing.
+Both may fire on the same missing date — that's expected overlap between a general
+trust signal and its specific application, not a duplicate rule to fix.
+
 ---
 
 ## E-E-A-T Total Score: 0–100

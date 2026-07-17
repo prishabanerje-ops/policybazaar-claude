@@ -1,6 +1,6 @@
 # GEO Parameters — Scoring Reference
 
-Full definitions and rubrics for the 9 GEO (Generative Engine Optimization) parameters
+Full definitions and rubrics for the 11 GEO (Generative Engine Optimization) parameters
 used in `/content-audit`.
 
 GEO is the practice of optimizing content so that AI search engines (ChatGPT, Perplexity,
@@ -23,6 +23,18 @@ to quote."
   top-ranking Google results and ~82% of ChatGPT/Perplexity citations are human-written —
   what separates the winners isn't authorship, it's original data, visible credentials,
   and a specific (not generic) angle. Parameter 7 below scores that directly.
+
+---
+
+## Out of Scope: Technical AI-Citation Factors
+
+A number of factors that influence AI-citation ranking are **not** scored by this
+lens because they require live crawling or rank-tracking data this skill doesn't
+fetch from pasted text or a fetched page body — URL crawler accessibility (can
+GPTBot/ChatGPT-User/PerplexityBot actually fetch the page), live AI Overview/ChatGPT
+search rank, JS-rendering/content visibility, domain authority, and `llms.txt`
+presence. Use the `seo` skill's technical audit for those. This lens stays scoped to
+what's assessable from the content itself.
 
 ---
 
@@ -52,7 +64,7 @@ Content that leads each section with a direct answer (before elaborating) gets c
 
 ---
 
-## 2. E-E-A-T Signals (15 pts)
+## 2. E-E-A-T Signals (11 pts)
 
 **What it is:** Experience, Expertise, Authoritativeness, Trustworthiness. AI engines
 weight YMYL content especially hard on E-E-A-T. See `references/eeat-framework.md`
@@ -62,20 +74,20 @@ for the full YMYL/insurance scoring rubric.
 - **Experience:** Does the content show real-world familiarity? (specific examples, edge cases, "from our data")
 - **Expertise:** Is there an author attribution with credentials? Expert quotes? Accurate technical detail?
 - **Authoritativeness:** Are authoritative sources cited? (DHA, MOH, official UAE government sites, licensed insurers)
-- **Trustworthiness:** Is there a last-updated date? Transparent methodology? No exaggerated claims?
+- **Trustworthiness:** Transparent methodology? No exaggerated claims? (Currency/last-updated date is scored separately — see Parameter 11, Freshness.)
 - Brand signals: is Policybazaar UAE identified as a licensed insurance aggregator?
 
 **Scoring:**
 | Condition | Points |
 |---|---|
-| Author + credentials + official sources cited + last-updated date + brand license signal | 15 |
-| 3 of 4 E-E-A-T pillars demonstrated | 10–14 |
-| 2 of 4 pillars | 5–9 |
-| Generic content with no E-E-A-T signals | 0–4 |
+| Author + credentials + official sources cited + brand license signal (all 4 E-E-A-T pillars) | 11 |
+| 3 of 4 E-E-A-T pillars demonstrated | 7–10 |
+| 2 of 4 pillars | 3–6 |
+| Generic content with no E-E-A-T signals | 0–2 |
 
 ---
 
-## 3. Entity Clarity (10 pts)
+## 3. Entity Clarity (6 pts)
 
 **What it is:** AI engines build knowledge graphs. Content that clearly identifies
 entities (brand names, products, places, regulations, people) and their relationships
@@ -91,10 +103,10 @@ gets extracted and cited more reliably.
 **Scoring:**
 | Condition | Points |
 |---|---|
-| All major entities named precisely; regulatory/geographic clarity throughout | 10 |
-| Most entities clear; 1–2 vague references | 6–9 |
-| Several vague or conflated entities | 3–5 |
-| Generic entity usage throughout (just "insurance companies", "the government") | 0–2 |
+| All major entities named precisely; regulatory/geographic clarity throughout | 6 |
+| Most entities clear; 1–2 vague references | 4–5 |
+| Several vague or conflated entities | 2–3 |
+| Generic entity usage throughout (just "insurance companies", "the government") | 0–1 |
 
 ---
 
@@ -151,7 +163,7 @@ improve AI engine visibility by up to 40%. Numbers make claims quotable and veri
 
 ---
 
-## 6. Schema / Structured Data Mentions (10 pts)
+## 6. Schema / Structured Data Mentions (6 pts)
 
 **What it is:** Content that signals schema-readiness (through its structure, not
 necessarily implemented code) gets better AI parsing. This parameter evaluates
@@ -168,14 +180,14 @@ whether the content's architecture maps to schema types.
 **Scoring:**
 | Condition | Points |
 |---|---|
-| Content maps to 3+ schema types; author, date, and structured sections present | 10 |
-| 2 schema types signaled | 6–9 |
-| 1 schema type | 3–5 |
-| No schema-friendly structure | 0–2 |
+| Content maps to 3+ schema types; author, date, and structured sections present | 6 |
+| 2 schema types signaled | 4–5 |
+| 1 schema type | 2–3 |
+| No schema-friendly structure | 0–1 |
 
 ---
 
-## 7. Content Depth & Original Angle (10 pts)
+## 7. Content Depth & Original Angle (8 pts)
 
 **What it is:** AI engines prefer comprehensive, differentiated sources. This parameter
 covers two related risks: content too shallow to fully answer the query, and content
@@ -183,14 +195,14 @@ that's long enough but says nothing a ranking competitor page doesn't already sa
 **Depth is about density, not raw word count** — a tight 1,200-word page with genuine
 detail should score higher than a padded 2,000-word page that restates the same point.
 
-**What to check (Depth & Density — up to 5 pts):**
+**What to check (Depth & Density — up to 4 pts):**
 - All major sub-topics covered (no obvious gaps an AI would need to fill from elsewhere)
 - Real case studies, examples, or scenarios — not just abstract definitions
 - Technical terms defined in context; multiple user intent angles covered
 - Word count is a floor to check (1,500+ words for GEO-focused guides/blogs), not the
   scoring target itself — a dense 1,200-word page can outscore a padded 2,000-word one
 
-**What to check (Original Angle — up to 5 pts):**
+**What to check (Original Angle — up to 4 pts):**
 - Does the content include at least one fact, data point, named example, or firsthand
   detail that isn't standard/generic coverage already on ranking competitor pages?
 - **The clearest fail signal:** could this draft be published on a competitor's site with
@@ -200,14 +212,14 @@ detail should score higher than a padded 2,000-word page that restates the same 
 **Scoring:**
 | Condition | Points |
 |---|---|
-| 1,500+ words (or dense equivalent), comprehensive sub-topic coverage, examples, multiple intent angles, AND a clear original angle vs. generic competitor coverage | 9–10 |
-| Strong on depth OR original angle, weaker on the other | 6–8 |
-| 1,000–1,499 words, mostly comprehensive, but reads as generic/interchangeable with competitors | 3–5 |
-| Under 500 words, or comprehensive word count but shallow and could be find-replaced onto any competitor site | 0–2 |
+| 1,500+ words (or dense equivalent), comprehensive sub-topic coverage, examples, multiple intent angles, AND a clear original angle vs. generic competitor coverage | 7–8 |
+| Strong on depth OR original angle, weaker on the other | 5–6 |
+| 1,000–1,499 words, mostly comprehensive, but reads as generic/interchangeable with competitors | 2–4 |
+| Under 500 words, or comprehensive word count but shallow and could be find-replaced onto any competitor site | 0–1 |
 
 ---
 
-## 8. Semantic Heading Use (10 pts)
+## 8. Semantic Heading Use (6 pts)
 
 **What it is:** AI engines use headings as a content map. Headings that contain
 question phrases, entity names, and semantic keywords (not just generic labels)
@@ -248,14 +260,14 @@ with nothing topic-specific in it.
 **Scoring:**
 | Condition | Points |
 |---|---|
-| All headings semantic, keyword-rich, informative standalone | 10 |
-| Most headings good, 1–2 generic | 6–9 |
-| Mixed — half semantic, half generic | 3–5 |
-| Generic or vanity headings throughout | 0–2 |
+| All headings semantic, keyword-rich, informative standalone | 6 |
+| Most headings good, 1–2 generic | 4–5 |
+| Mixed — half semantic, half generic | 2–3 |
+| Generic or vanity headings throughout | 0–1 |
 
 ---
 
-## 9. Brand / Source Credibility Signals (5 pts)
+## 9. Brand / Source Credibility Signals (3 pts)
 
 **What it is:** AI engines assess source credibility before citing. Content from
 an identifiable, licensed brand with clear contact signals gets higher citation trust.
@@ -270,7 +282,70 @@ an identifiable, licensed brand with clear contact signals gets higher citation 
 **Scoring:**
 | Condition | Points |
 |---|---|
-| Brand named + licensed aggregator identified + trust signal + author | 5 |
-| 2–3 of the above | 3–4 |
-| Only brand name present | 1–2 |
+| Brand named + licensed aggregator identified + trust signal + author | 3 |
+| 2–3 of the above | 2 |
+| Only brand name present | 1 |
 | Anonymous or no brand signals | 0 |
+
+---
+
+## 10. Fan-out Rank (12 pts)
+
+**What it is:** AI assistants answer a query by internally "fanning out" into several
+related sub-questions before composing a response (e.g. a query about "travel
+insurance UAE" fans out into sub-questions on cost, coverage limits, claim process,
+visa requirements). Content that already answers the likely fan-out sub-queries — on
+the same page, or via a well-linked topic cluster — is more likely to be pulled into
+multiple parts of an AI-generated answer, not cited once for only the headline query.
+
+**What to check:**
+- Does the page anticipate and answer the adjacent sub-questions a research-mode AI
+  would ask about this topic, not just the primary query?
+- FILE MODE: judge from the content alone — does this piece cover the topical
+  neighborhood, or stop at the headline question?
+- URL MODE: also check whether the page is part of a linked topic cluster (sibling
+  pages covering sub-questions this page doesn't) — this ties into the Step 2.6
+  interlink analysis in `SKILL.md`; a strong hub+spoke structure counts even if this
+  exact page doesn't answer every sub-question itself.
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| Directly answers 4+ likely fan-out sub-questions, or is clearly part of a linked cluster covering them | 12 |
+| Answers 2–3 sub-questions directly | 8–11 |
+| Answers 1 sub-question beyond the primary query | 4–7 |
+| Only the primary query answered, no fan-out coverage, no cluster linking | 0–3 |
+
+---
+
+## 11. Freshness (8 pts)
+
+**What it is:** AI engines discount stale sources, especially for YMYL content where
+prices, coverage limits, and regulations change. Split out from E-E-A-T's
+Trustworthiness pillar (see `eeat-framework.md`) into its own scored signal — it's
+weighted independently on the research this rubric addition is based on.
+
+**What to check:**
+- Last-updated/published date present and genuinely recent for the vertical
+- Time-sensitive claims (prices, regulatory limits) carry an "as of" qualifier
+- No stale year references or regulatory figures inconsistent with current rules
+- **FILE MODE:** score whether the *draft* signals its own currency (an "as of"
+  qualifier attached to time-sensitive claims), not the publish date itself — dates
+  are added at deployment, not by the writer (same carve-out logic as Parameter 2).
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| Recent date/as-of qualifier present on all time-sensitive claims; content reflects current rules/prices | 8 |
+| Date present but 1–2 time-sensitive claims lack as-of framing, or minor staleness | 5–7 |
+| No clear freshness signal; some outdated-info risk | 2–4 |
+| Stale/outdated regulatory or pricing info stated as current | 0–1 |
+
+**Differentiation from Fact-Check Lens:** This parameter scores the *presence of a
+currency signal* (dates, as-of framing) — it does not verify whether a claim is
+actually still true. The Fact-Check Lens's **Outdated Information Risk** parameter
+(`fact-check-parameters.md`) scores whether a *specific verified claim* is stale, via
+live `web_search`. A page can score well here (dates everywhere) while still failing
+Outdated Information Risk (the dated figure is wrong), and vice versa — both may fire
+on the same finding; that's expected overlap between a structural signal and a
+verified-fact check, not a duplicate rule to fix.
