@@ -26,6 +26,18 @@ to quote."
 
 ---
 
+## Out of Scope: Technical AI-Citation Factors
+
+A number of factors that influence AI-citation ranking are **not** scored by this
+lens because they require live crawling or rank-tracking data this skill doesn't
+fetch from pasted text or a fetched page body — URL crawler accessibility (can
+GPTBot/ChatGPT-User/PerplexityBot actually fetch the page), live AI Overview/ChatGPT
+search rank, JS-rendering/content visibility, domain authority, and `llms.txt`
+presence. Use the `seo` skill's technical audit for those. This lens stays scoped to
+what's assessable from the content itself.
+
+---
+
 ## 1. Direct-Answer Formatting (15 pts)
 
 **What it is:** AI engines scan content for the fastest path to a usable answer.
@@ -274,3 +286,66 @@ an identifiable, licensed brand with clear contact signals gets higher citation 
 | 2–3 of the above | 3–4 |
 | Only brand name present | 1–2 |
 | Anonymous or no brand signals | 0 |
+
+---
+
+## 10. Fan-out Rank (12 pts)
+
+**What it is:** AI assistants answer a query by internally "fanning out" into several
+related sub-questions before composing a response (e.g. a query about "travel
+insurance UAE" fans out into sub-questions on cost, coverage limits, claim process,
+visa requirements). Content that already answers the likely fan-out sub-queries — on
+the same page, or via a well-linked topic cluster — is more likely to be pulled into
+multiple parts of an AI-generated answer, not cited once for only the headline query.
+
+**What to check:**
+- Does the page anticipate and answer the adjacent sub-questions a research-mode AI
+  would ask about this topic, not just the primary query?
+- FILE MODE: judge from the content alone — does this piece cover the topical
+  neighborhood, or stop at the headline question?
+- URL MODE: also check whether the page is part of a linked topic cluster (sibling
+  pages covering sub-questions this page doesn't) — this ties into the Step 2.6
+  interlink analysis in `SKILL.md`; a strong hub+spoke structure counts even if this
+  exact page doesn't answer every sub-question itself.
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| Directly answers 4+ likely fan-out sub-questions, or is clearly part of a linked cluster covering them | 12 |
+| Answers 2–3 sub-questions directly | 8–11 |
+| Answers 1 sub-question beyond the primary query | 4–7 |
+| Only the primary query answered, no fan-out coverage, no cluster linking | 0–3 |
+
+---
+
+## 11. Freshness (8 pts)
+
+**What it is:** AI engines discount stale sources, especially for YMYL content where
+prices, coverage limits, and regulations change. Split out from E-E-A-T's
+Trustworthiness pillar (see `eeat-framework.md`) into its own scored signal — it's
+weighted independently on the research this rubric addition is based on.
+
+**What to check:**
+- Last-updated/published date present and genuinely recent for the vertical
+- Time-sensitive claims (prices, regulatory limits) carry an "as of" qualifier
+- No stale year references or regulatory figures inconsistent with current rules
+- **FILE MODE:** score whether the *draft* signals its own currency (an "as of"
+  qualifier attached to time-sensitive claims), not the publish date itself — dates
+  are added at deployment, not by the writer (same carve-out logic as Parameter 2).
+
+**Scoring:**
+| Condition | Points |
+|---|---|
+| Recent date/as-of qualifier present on all time-sensitive claims; content reflects current rules/prices | 8 |
+| Date present but 1–2 time-sensitive claims lack as-of framing, or minor staleness | 5–7 |
+| No clear freshness signal; some outdated-info risk | 2–4 |
+| Stale/outdated regulatory or pricing info stated as current | 0–1 |
+
+**Differentiation from Fact-Check Lens:** This parameter scores the *presence of a
+currency signal* (dates, as-of framing) — it does not verify whether a claim is
+actually still true. The Fact-Check Lens's **Outdated Information Risk** parameter
+(`fact-check-parameters.md`) scores whether a *specific verified claim* is stale, via
+live `web_search`. A page can score well here (dates everywhere) while still failing
+Outdated Information Risk (the dated figure is wrong), and vice versa — both may fire
+on the same finding; that's expected overlap between a structural signal and a
+verified-fact check, not a duplicate rule to fix.
