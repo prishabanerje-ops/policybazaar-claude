@@ -1,6 +1,6 @@
 ---
 name: uae-insurance
-description: PolicyBazaar UAE insurance hub. Use for the RACE operating loop ("RACE", "seo flow", research/authority/convert/edge stages, UAE insurance vertical prompts), senior SEO+AEO audits of UAE insurance pages vs local SERP competitors (car, health, travel, home, life, SME — "audit this insurance page"), and leads intelligence ("leads decline", "dropped pages", "traffic drop", "recovery roadmap", cross-referencing leads + SEMrush + GSC + GA4), and keyword cannibalization audits ("cannibalization", "duplicate ranking pages", "URLs competing for the same query"). Invoke as "/uae-insurance <sub-task> <args>" or from any matching natural-language ask.
+description: PolicyBazaar UAE insurance hub. Use for the RACE operating loop ("RACE", "seo flow", research/authority/convert/edge stages, UAE insurance vertical prompts), senior SEO+AEO audits of UAE insurance pages vs local SERP competitors (car, health, travel, home, life, SME — "audit this insurance page"), leads intelligence ("leads decline", "dropped pages", "traffic drop", "recovery roadmap", cross-referencing leads + SEMrush + GSC + GA4), and keyword cannibalization audits ("cannibalization", "duplicate ranking pages", "URLs competing for the same query"). Invoke as "/uae-insurance <sub-task> <args>" or from any matching natural-language ask.
 ---
 
 # UAE Insurance Hub
