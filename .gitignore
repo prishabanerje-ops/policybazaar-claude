@@ -28,3 +28,6 @@ AIO_*.xlsx
 # Python cache
 __pycache__/
 .pytest_cache/
+
+# Git worktrees (isolated workspaces for parallel branch work)
+.worktrees/
