@@ -19,6 +19,8 @@ You collect AI-search citation data for a list of prompts and write it to a JSON
 Write one record per prompt: `{"q": "<prompt>", "present": <bool>, "text": "<verbatim or ''>", "hosts": ["dom1", ...]}`.
 `present` = an answer with extractable content was captured (sources may still be empty). An empty `hosts` is a **real, valid** result — never fabricate citations.
 
+**For the `google` engine only**, `extract_aio.js` also returns `sectionCitations`, `trailingSources`, `unresolved`, and `mentionedNotCited` — pass ALL of these through verbatim into the record, unchanged (don't drop them, don't recompute them). They power the fan-out visibility report (which source backs which specific part of the answer, not just a flat citation list). If `unresolved` is non-empty across the run, list the distinct unresolved publisher names in your final summary — that means a real competitor showed up whose name isn't yet in `extract_aio.js`'s `KNOWN_PUBLISHERS` map and needs adding.
+
 ## Hard rule — fail honestly (applies to both engines)
 If you hit a CAPTCHA / Cloudflare challenge / login wall, or no suitable browser MCP is connected: **stop immediately**, write whatever you've collected so far to `out_path`, and report which engine, how many prompts completed, where it stopped, and that the rest are uncollected. Do not guess or fill in the remaining prompts. (Mirrors the user's standing rule: a tool failure means stop and report, never present inferred data as measured.)
 
@@ -32,7 +34,7 @@ If you hit a CAPTCHA / Cloudflare challenge / login wall, or no suitable browser
    Report which engine you used. If neither is connected, stop (see hard rule).
 2. Read `extract_fn_path` (`extract_aio.js`) — a single async arrow function.
 3. For each prompt: navigate to `https://<google>/search?q=<URL-encoded prompt>&gl=<gl>&hl=<hl>`, then **evaluate the function** (Playwright `browser_evaluate` / Chrome `evaluate_script`). The function expands "Show more" and waits internally, so one evaluate after navigation is enough. If navigation reports a soft timeout, still evaluate — trust the extraction result.
-4. Map the return: `hasAIO:false` → `{present:false, hosts:[]}`; `hasCaptcha:true` → stop (hard rule); otherwise `{present:true, text, hosts}`.
+4. Map the return: `hasAIO:false` → `{present:false, hosts:[]}`; `hasCaptcha:true` → stop (hard rule); otherwise `{present:true, text, hosts, sectionCitations, trailingSources, unresolved, mentionedNotCited}` (the last four pass through verbatim — see above).
 
 ## Engine: `chatgpt` (chatgpt.com web search)
 **Chrome DevTools MCP only** — ChatGPT requires the logged-in session in the user's Chrome. Load:
@@ -60,7 +62,7 @@ Write `out_path`:
   "keywords": [ <one record per prompt> ]
 }
 ```
-Return ONLY a compact summary as your final message (the caller reads it, not the user): engine, total prompts, how many produced an answer, how many had ≥1 cited source, whether a block/login stopped the run, and `out_path`. Do not paste the full dataset back.
+Return ONLY a compact summary as your final message (the caller reads it, not the user): engine, total prompts, how many produced an answer, how many had ≥1 cited source, whether a block/login stopped the run, `out_path`, and (google only) any distinct `unresolved` publisher names seen across the run. Do not paste the full dataset back.
 
 ## Notes
 - One browser, sequential — not parallelizable; expected.

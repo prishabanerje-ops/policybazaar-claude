@@ -7,25 +7,43 @@
  *
  * It is idempotent and self-contained: detects a CAPTCHA, detects whether an
  * AI Overview is present, expands "Show more" (body) and "Show all" (sources),
- * then returns the full verbatim text plus the ordered, de-duplicated list of
- * cited external domains.
+ * then returns the full verbatim text plus citation data at TWO levels:
+ *   - a flat, ordered, de-duplicated `hosts` list (same shape callers already use)
+ *   - `sectionCitations`: which specific answer bullet/paragraph each inline
+ *     citation chip is attached to — this is what proves/measures "fan-out"
+ *     (Google citing a different source per sub-facet of the question, not one
+ *     flat list for the whole answer).
  *
- * CITATION ORDER — important:
- *   An AI Overview exposes citations in TWO different orders:
- *     1. the ranked "Show all" SOURCES PANEL (a role=dialog) — this is the order a
- *        user sees and the closest proxy to a citation rank; and
- *     2. inline links embedded in the answer body text, plus a separate
- *        "Related links" widget — both ordered differently.
- *   This function PREFERS the sources-panel order and reports which order it used
- *   in the `order` field. It falls back to the inline-body order only when no
- *   sources panel is present. (Older versions returned only the inline order,
- *   which mis-ranked domains vs. what users actually see.)
+ * WHY THIS ISN'T HREF-BASED ANYMORE (2026-08-31 rewrite):
+ *   Google's current AI Overview UI renders zero static <a href> citation
+ *   links — confirmed by walking 6 DOM ancestor levels up from a source card
+ *   and finding no href/data-url/ping anywhere. Citations are click-handler-only
+ *   (Google's own JS resolves the destination). So this script identifies
+ *   citations by their STRUCTURAL role instead (verified against the live page,
+ *   not guessed from rendered text — an earlier text-pattern-only approach was
+ *   tried and discarded because it misfired on section headings):
+ *     - inline citation chip   = span.WBgIic.Wg1cdb.notranslate (has a favicon,
+ *       text = "Publisher Name" or "Publisher Name +N")
+ *     - trailing source card   = .cRH23c.g7lqo.sYLMkd wrapper, containing
+ *       .gpZmoc.Hnm1Fe (article title) + .xWZV4e (publisher name)
+ *     - section label for a chip = nearest preceding strong.rQesXe.MPyX
+ *       (a bullet's bolded lead-in, e.g. "Allianz Care:") or [role="heading"]
+ *   Since no URL is ever exposed, publisher NAME is resolved to a domain via
+ *   KNOWN_PUBLISHERS below — a small curated map for the fixed UAE health/
+ *   travel insurance competitive set. A name not in the map is reported as
+ *   {host: null, needsReview: true} rather than guessed — extend the map
+ *   when `unresolved` shows real competitors you recognize.
+ *   NOTE: this selector set is tied to Google's current class names, which are
+ *   not permanent — if `sectionCitations`/`trailingSources` come back empty
+ *   while `hasAIO` is true, Google's markup has likely changed again and this
+ *   script needs re-verifying against a live page before trusting its output.
  *
  * Returns one of:
- *   { hasCaptcha: true }                                          -> STOP, report a block
- *   { hasAIO: false, hasCaptcha: false }                          -> no Overview for this query (record honestly)
- *   { hasAIO: true, hasCaptcha: false, order, text, citationCount, hosts }
- *       order = "sources-panel" (ranked panel) | "inline" (body fallback)
+ *   { hasCaptcha: true }                                  -> STOP, report a block
+ *   { hasAIO: false, hasCaptcha: false }                  -> no Overview for this query (record honestly)
+ *   { hasAIO: true, hasCaptcha: false, error }             -> AI Overview heading found but body container not resolved
+ *   { hasAIO: true, hasCaptcha: false, text, citationCount, hosts,
+ *     sectionCitations, trailingSources, unresolved, mentionedNotCited }
  *
  * Never fabricate a result when this errors or returns hasCaptcha — report the failure.
  */
@@ -42,7 +60,7 @@ async () => {
   if (!hasAIO) return { hasAIO: false, hasCaptcha: false };
 
   // Expand the Overview body ("Show more") AND open the full ranked sources list
-  // ("Show all") so every citation loads in panel order.
+  // ("Show all") so every citation loads.
   const clickByText = (re) =>
     Array.from(
       document.querySelectorAll(
@@ -55,24 +73,7 @@ async () => {
   clickByText(/^\s*show all\s*$/i);
   await sleep(1500);
 
-  // Ordered, de-duplicated external citation hosts within a container (drop
-  // Google's own links). De-dup by host so each domain appears once, at its
-  // first (highest) position — matching how the analysis assigns "position".
-  const hostsOf = (root) => {
-    const seen = new Set();
-    const hosts = [];
-    Array.from(root.querySelectorAll("a[href]")).forEach((a) => {
-      let host = "";
-      try { host = new URL(a.href).hostname.replace(/^www\./, ""); } catch (_) {}
-      if (!host || /google\.|gstatic|youtube\.com\/redirect/i.test(host)) return;
-      if (seen.has(host)) return;
-      seen.add(host);
-      hosts.push(host);
-    });
-    return hosts;
-  };
-
-  // --- Verbatim answer text (from the AI Overview body container) ---
+  // --- Locate the AI Overview body container ---
   const all = Array.from(document.querySelectorAll("div,h1,h2,h3,span"));
   const heading = all.find(
     (e) =>
@@ -89,24 +90,100 @@ async () => {
     }
     text = (bodyContainer.innerText || "").replace(/^\s*AI Overview\s*/i, "").trim();
   }
+  if (!bodyContainer) return { hasAIO: true, hasCaptcha: false, error: "heading not found" };
 
-  // --- PRIMARY: the "Show all" sources panel (Google's ranked source list) ---
-  // It renders as a role=dialog holding >=3 external source links. Exclude the
-  // separate "Related links" widget (ordered differently) and any chrome dialogs
-  // (feedback, ad centre — they have no source links). Pick the remaining
-  // candidate with the most source links (ties -> longest text).
-  const panels = Array.from(document.querySelectorAll('[role="dialog"]'))
-    .map((d) => ({ aria: d.getAttribute("aria-label") || "", hosts: hostsOf(d), len: (d.innerText || "").length }))
-    .filter((d) => d.hosts.length >= 3 && !/related/i.test(d.aria))
-    .sort((a, b) => (b.hosts.length - a.hosts.length) || (b.len - a.len));
+  // Curated publisher-name -> domain map for the UAE health/travel insurance
+  // competitive set, seeded from prior verified scrapes. Extend as new
+  // competitors show up in `unresolved` — never guess a mapping here.
+  const KNOWN_PUBLISHERS = {
+    "pacific prime": "pacificprime.com",
+    "hayah insurance": "hayah.com", "hayah": "hayah.com",
+    "expat network": "expatnetwork.com",
+    "sukoon insurance": "direct.sukoon.com", "sukoon": "direct.sukoon.com",
+    "insurancehub.ae": "insurancehub.ae", "insurancehub": "insurancehub.ae",
+    "allianz care": "allianzcare.com",
+    "shory insurance": "shory.com", "shory": "shory.com",
+    "lifecare international": "lifecareinternational.com",
+    "insurancemarket.ae": "insurancemarket.ae", "insurancemarket": "insurancemarket.ae",
+    "takaful emarat": "takafulemarat.com",
+    "policybazaar uae": "policybazaar.ae", "policybazaar": "policybazaar.ae",
+    "esanad insurance": "esanad.com", "esanad": "esanad.com",
+    "metlife uae": "metlife.ae", "metlife": "metlife.ae",
+    "tata aig": "tataaig.com",
+    "seven insurance brokers": "seveninsurancebrokers.com",
+    "gargash insurance": "gargashinsurance.com",
+    "savington": "savington.ae",
+    "dubai insurance": "dubins.ae",
+    "feather insurance": "feather-insurance.com",
+    "tameen insurance": "tameeninsurance.ae", "tameen": "tameeninsurance.ae",
+  };
+  const resolveHost = (label) => KNOWN_PUBLISHERS[(label || "").trim().toLowerCase()] || null;
 
-  if (panels.length) {
-    const hosts = panels[0].hosts;
-    return { hasAIO: true, hasCaptcha: false, order: "sources-panel", text, citationCount: hosts.length, hosts };
+  // --- Inline (primary) citations: chip -> nearest preceding section label ---
+  const flowEls = Array.from(
+    bodyContainer.querySelectorAll(
+      'strong.rQesXe.MPyX, [role="heading"], span.WBgIic.Wg1cdb.notranslate'
+    )
+  );
+  const sectionCitations = [];
+  let currentSection = "";
+  for (const el of flowEls) {
+    if (el.matches("span.WBgIic.Wg1cdb.notranslate")) {
+      const raw = (el.innerText || "").replace(/\s+/g, " ").trim();
+      const m = raw.match(/^(.*?)\s*\+(\d+)$/);
+      const citedAs = (m ? m[1] : raw).trim();
+      const additionalCount = m ? parseInt(m[2], 10) : 0;
+      if (!citedAs) continue;
+      const host = resolveHost(citedAs);
+      sectionCitations.push({
+        answerSection: currentSection.slice(0, 100),
+        citedAs,
+        additionalCount,
+        host,
+        needsReview: !host,
+      });
+    } else {
+      const t = (el.innerText || "").replace(/\s+/g, " ").trim();
+      if (t && !/^ai overview$/i.test(t)) currentSection = t;
+    }
   }
 
-  // --- FALLBACK: inline citation order from the AI Overview body container ---
-  if (!bodyContainer) return { hasAIO: true, hasCaptcha: false, error: "heading not found" };
-  const hosts = hostsOf(bodyContainer);
-  return { hasAIO: true, hasCaptcha: false, order: "inline", text, citationCount: hosts.length, hosts };
+  // --- Trailing source cards (the "Show all" list) ---
+  const trailingSources = Array.from(bodyContainer.querySelectorAll(".cRH23c.g7lqo.sYLMkd"))
+    .map((c) => {
+      const citedAs = (c.querySelector(".xWZV4e")?.innerText || "").replace(/\s+/g, " ").trim();
+      const title = (c.querySelector(".gpZmoc.Hnm1Fe")?.innerText || "").replace(/\s+/g, " ").trim();
+      const host = resolveHost(citedAs);
+      return { citedAs, title, host, needsReview: !host };
+    })
+    .filter((c) => c.citedAs);
+
+  // --- Flat, ordered, de-duplicated hosts list (kept for existing callers) ---
+  const seen = new Set();
+  const hosts = [];
+  [...sectionCitations, ...trailingSources].forEach((c) => {
+    if (c.host && !seen.has(c.host)) { seen.add(c.host); hosts.push(c.host); }
+  });
+
+  // --- Publisher names that couldn't be resolved -> KNOWN_PUBLISHERS needs updating ---
+  const unresolved = [
+    ...new Set(
+      [...sectionCitations, ...trailingSources].filter((c) => c.needsReview).map((c) => c.citedAs)
+    ),
+  ];
+
+  // --- Brand named in the answer prose but not cited as a source anywhere ---
+  const mentionedNotCited = !hosts.includes("policybazaar.ae") && /\bpolicy\s*bazaar\b/i.test(text);
+
+  return {
+    hasAIO: true,
+    hasCaptcha: false,
+    text,
+    citationCount: hosts.length,
+    hosts,
+    sectionCitations,
+    trailingSources,
+    unresolved,
+    mentionedNotCited,
+  };
 }
