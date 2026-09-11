@@ -151,10 +151,10 @@ API value alone isn't enough — it requires the stored history from step 3.
 | Content Quality Score | `quality_score.py` | See formula below |
 | Total Reach Growth Rate | Computed from snapshot | This period's reach vs. prior period, from history |
 | Reach | Graph API insights | Direct |
-| Impressions per Video | Graph API insights | Video-post impressions ÷ video post count |
-| Hook Rate | Graph API insights | **Needs verification** — see Open Risks |
-| Hold Rate | Graph API insights | **Needs verification** — see Open Risks |
-| Average Watch Time | Graph API insights | **Needs verification** — see Open Risks |
+| Reach per Video | Graph API insights | **Renamed from "Impressions per Video" 2026-09-11** — the `impressions` metric is confirmed deprecated by Meta for any Instagram media created after 2024-07-02 (verified against Meta's Instagram Platform docs), so this uses the current, stable `reach` metric instead: video-post reach ÷ video post count |
+| Hook Rate | Graph API insights | **Needs verification** — see Open Risks. Meta's docs confirm a Reels "skip rate" (% of viewers who bail in the first 3 seconds) exists conceptually; Hook Rate = 1 − skip rate, but the exact API metric parameter string was not confirmed |
+| Hold Rate | Graph API insights | **Needs verification** — see Open Risks. No confirmed direct analog found; likely approximated from watch-time/duration once the exact watch-time field is confirmed |
+| Average Watch Time | Graph API insights | **Needs verification** — see Open Risks. Meta's docs confirm "average watch time" and "total video view time" exist as Reels metrics conceptually; exact API parameter string not confirmed |
 | AVT (Long Videos) — FB only | Graph API insights | **Needs verification**; split by video duration |
 | AVT (Short Videos) — FB only | Graph API insights | **Needs verification**; split by video duration |
 | Engagement Rate (ER) | Computed | (likes + comments + shares + saves) ÷ reach |
@@ -232,12 +232,19 @@ Per this workspace's testing rules:
 ## Open questions / risks
 
 - **Graph API field verification (blocking, first implementation step):**
-  Hook Rate, Hold Rate, Average Watch Time, and the long/short video AVT
-  split are not confirmed against live Meta Graph API documentation in this
-  design. The first implementation task must verify each field's existence
-  and exact name against Meta's current docs (or a real API call), and
-  either implement it directly or define an explicit, documented
-  approximation — never silently assume a field name.
+  Checked against Meta's current Instagram Platform documentation
+  (2026-09-11): `impressions` and `plays` are confirmed deprecated
+  (`impressions` for any media created after 2024-07-02; `plays` since
+  2025-01-21), which is why "Impressions per Video" was renamed to "Reach
+  per Video" above, using the confirmed-current `reach` metric. Hook Rate,
+  Hold Rate, Average Watch Time, and the long/short video AVT split are
+  still not confirmed to an exact API metric parameter string — Meta's docs
+  confirm the underlying concepts exist (Reels skip rate, average watch
+  time, total video view time) but not the literal string to pass as
+  `metric=`. The first implementation task for these must confirm the exact
+  parameter names against a live API call (once a real token exists) or
+  Meta's reference docs, and either implement directly or define an
+  explicit, documented approximation — never silently assume a field name.
 - **Repeat-engager rate feasibility:** computing this requires fetching
   per-post engager lists across every post in the period, which may hit
   rate limits at scale or have Meta-side restrictions on what commenter/
