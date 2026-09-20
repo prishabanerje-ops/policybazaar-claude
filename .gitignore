@@ -25,9 +25,19 @@ old-outputs/
 aio_*.json
 AIO_*.xlsx
 
+# Raw third-party data exports (CRM leads, Screaming Frog crawls, SERP trackers,
+# backlink exports) — bulky, machine-local, keep on disk, not in git
+data/*-raw/
+
 # Python cache
 __pycache__/
 .pytest_cache/
 
 # Git worktrees (isolated workspaces for parallel branch work)
 .worktrees/
+
+# Nested repo with its own remote (Bitbucket) — not tracked by the root repo
+Payoad Experiment/
+
+# Regenerable graphify cache
+graphify-out/cache/

@@ -56,7 +56,17 @@ async () => {
     !!document.querySelector("form#captcha-form");
   if (hasCaptcha) return { hasCaptcha: true };
 
-  const hasAIO = /AI Overview/i.test(bodyText);
+  // 2026-09-07 fix: "AI Overview" is no longer reliably visible body text —
+  // on this render it only exists as an aria-label on the "Show more" button
+  // (aria-label="Show more AI Overview"), which innerText never captures. Add
+  // the structural div.CKgc1d container (verified live) and a raw-HTML text
+  // check (catches aria-label/title text) as additional signals, alongside
+  // the original visible-text check for renders where it still applies.
+  const aioContainer = document.querySelector("div.CKgc1d");
+  const hasAIO =
+    (!!aioContainer && (aioContainer.innerText || "").trim().length > 100) ||
+    /AI Overview/i.test(bodyText) ||
+    /AI Overview/i.test(document.body.innerHTML);
   if (!hasAIO) return { hasAIO: false, hasCaptcha: false };
 
   // Expand the Overview body ("Show more") AND open the full ranked sources list
@@ -74,22 +84,39 @@ async () => {
   await sleep(1500);
 
   // --- Locate the AI Overview body container ---
-  const all = Array.from(document.querySelectorAll("div,h1,h2,h3,span"));
-  const heading = all.find(
-    (e) =>
-      (e.childElementCount === 0 || /H[123]/.test(e.tagName)) &&
-      /^\s*AI Overview\s*$/i.test((e.innerText || "").trim())
-  );
-  let bodyContainer = null;
-  let text = "";
-  if (heading) {
-    bodyContainer = heading;
-    for (let i = 0; i < 8; i++) {
-      if (bodyContainer.parentElement) bodyContainer = bodyContainer.parentElement;
-      if ((bodyContainer.innerText || "").length > 600) break;
+  // 2026-09-07 fix: the old heading finder required childElementCount===0 (a
+  // pure text leaf) or an H1-H3 tag. Google now renders the "AI Overview"
+  // label as a div wrapping an icon + text span, so the label element itself
+  // has children and the old check matched nothing (returned error:"heading
+  // not found" even though hasAIO was correctly true). Verified live against
+  // google.ae on 2026-09-07: label = div.ux3nGb ("AI Overview"), body =
+  // div.CKgc1d. Kept both a fast class-based path and a relaxed generic
+  // fallback (matches by normalized text regardless of child elements) since
+  // the class names are not guaranteed stable — see note above.
+  const norm = (s) => (s || "").replace(/\s+/g, " ").trim();
+  let bodyContainer = document.querySelector("div.CKgc1d");
+  if (bodyContainer && norm(bodyContainer.innerText).length < 200) bodyContainer = null;
+  if (!bodyContainer) {
+    const all = Array.from(document.querySelectorAll("div,h1,h2,h3,span"));
+    const candidates = all
+      .filter((e) => /^ai overview$/i.test(norm(e.innerText)))
+      .sort(
+        (a, b) =>
+          norm(a.innerText).length - norm(b.innerText).length ||
+          a.querySelectorAll("*").length - b.querySelectorAll("*").length
+      );
+    const heading = candidates[0] || null;
+    if (heading) {
+      let node = heading;
+      for (let i = 0; i < 8; i++) {
+        if (node.parentElement) node = node.parentElement;
+        if (norm(node.innerText).length > 600) break;
+      }
+      bodyContainer = node;
     }
-    text = (bodyContainer.innerText || "").replace(/^\s*AI Overview\s*/i, "").trim();
   }
+  let text = "";
+  if (bodyContainer) text = (bodyContainer.innerText || "").replace(/^\s*AI Overview\s*/i, "").trim();
   if (!bodyContainer) return { hasAIO: true, hasCaptcha: false, error: "heading not found" };
 
   // Curated publisher-name -> domain map for the UAE health/travel insurance
@@ -117,7 +144,16 @@ async () => {
     "feather insurance": "feather-insurance.com",
     "tameen insurance": "tameeninsurance.ae", "tameen": "tameeninsurance.ae",
   };
-  const resolveHost = (label) => KNOWN_PUBLISHERS[(label || "").trim().toLowerCase()] || null;
+  const resolveHost = (label) => {
+    const clean = (label || "").trim();
+    const known = KNOWN_PUBLISHERS[clean.toLowerCase()];
+    if (known) return known;
+    // Some source chips show the raw domain instead of a friendly publisher
+    // name (e.g. "tameeninsurance.ae") — that IS the host, not a guess.
+    const domainMatch = clean.match(/^(?:www\.)?([a-z0-9-]+(?:\.[a-z0-9-]+)+)$/i);
+    if (domainMatch) return domainMatch[1].toLowerCase();
+    return null;
+  };
 
   // --- Inline (primary) citations: chip -> nearest preceding section label ---
   const flowEls = Array.from(

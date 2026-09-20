@@ -32,12 +32,13 @@ natural language ("audit policybazaar.ae") — the hub descriptions catch both.
 | `/seo hreflang <url>` | International SEO: hreflang audit/validation/generation + content translation & localization strategy (incl. URL-structure decision table) | Arabic/English versions of policybazaar.ae; GCC market expansion |
 | `/seo campaign <url>` | Full three-phase campaign pipeline: parallel data collection (GSC, SEMrush, market) → 11 analysis subagents → prioritised roadmap (optional PDF) | Building the next quarter's complete SEO campaign in one run |
 
-## 2. `/content` — Content Hub (6 playbooks)
+## 2. `/content` — Content Hub (7 playbooks)
 
 | Skill | Detailed use | Application |
 |---|---|---|
+| `/content audit <url or file>` | Five-lens scored audit of existing content: SEO (12 params), GEO citation readiness (9 params), AI-detection/human-likeness (9 signals), YMYL/Helpful Content, and live fact-check via web search; detects brand (Policybazaar vs Paisabazaar UAE) and FILE vs URL mode; also answers to `/content-audit` | Pre-publish gate for insurance guides or loan pages — one report with per-lens scores, line-level evidence, and fix list |
 | `/content quality <url>` | Content quality + E-E-A-T analysis with AI-citation readiness scoring, readability, thin-content detection | Auditing YMYL trust signals on insurance guides (critical for finance niche) |
-| `/content brief <topic>` | Competitive content brief: per-section word counts, competitor scoring, keyword density, page-type templates; new-page or improve-existing modes | Briefing writers for "best health insurance UAE 2026" before they draft |
+| `/content brief <topic>` | Pre-writing research brief for PB/Paisabazaar UAE content: reads top SERP competitors and states the gap, one-sentence differentiation angle, web-verified facts/figures with sources, Commercial vs Article outline (FAQ questions sourced from PAA/Reddit/Quora), cannibalization check against the live URL list, go/no-go completeness verdict; also answers to `/content-brief` | Briefing writers for "best health insurance UAE 2026" before they draft; go/no-go on a content idea |
 | `/content cluster <keywords>` | SERP-based semantic clustering — groups keywords by actual Google SERP overlap, designs hub-and-spoke architecture with internal-link matrices | Planning the car-insurance content cluster; deciding pillar vs spoke pages |
 | `/content plan <site>` | Content strategy: industry templates, competitive analysis, editorial calendar, implementation roadmap (includes prioritization matrix: quick wins / big bets / fill-ins / avoid) | Annual content roadmap; deciding what to write next quarter |
 | `/content competitor-pages <X vs Y>` | Generate SEO-optimized "X vs Y" comparison and "alternatives to X" pages with feature matrices and schema | "PolicyBazaar vs yallacompare" pages; "Salama alternatives" landing pages |

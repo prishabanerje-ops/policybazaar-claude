@@ -51,6 +51,14 @@ You are auditing ONE policybazaar.ae page as part of a batched health-insurance 
    For facts with
    no external arbiter (platform figures like "plans from AED X on Policybazaar"), set
    verified_value to "n/a" and status to "Unverifiable".
+
+   REQUIRED FIELDS CHECKLIST — both `fact_checks` and `ledger_entries` items need BOTH
+   `source` (a specific named source: URL, publication, or database — e.g.
+   "adnic.ae", "Pakistan Stock Exchange record") AND `source_tier` (e.g. "Secondary —
+   verify internally"). These are two separate required fields, not one — an item
+   with `source_tier` but no `source`, or vice versa, fails JSON schema validation
+   and the whole audit gets rejected. Double-check every fact_checks and
+   ledger_entries object has both before writing the file.
 5. TOOL FAILURE POLICY (hard rule): if the page fetch or a verification tool fails,
    do NOT fabricate or infer. If the page itself cannot be fetched, write NO files and
    return status "failed" with the exact failure in failure_reason. If only some
