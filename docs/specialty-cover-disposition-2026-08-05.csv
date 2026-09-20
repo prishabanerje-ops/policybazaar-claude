@@ -1,0 +1,106 @@
+topic,url,c360,i360,ctr360,pos360,c28,i28,recommendation,rationale
+alternative-med,/health-insurance/articles/alternative-medicine-benefits-under-health-insurance/,16,5171,0.309,8.2,1,297,REWRITE IN PLACE,"5,171 impr at 0.309% CTR, pos 8.2. Below benchmark; rebuild on the spoke template."
+bariatric,/heres-how-obesity-affects-your-health-insurance-premiums-hiart/,17,1672,1.017,15.6,1,135,KEEP + UPGRADE,converts above the -hiart benchmark (1.23%). Do not redirect.
+bariatric,/health-insurance/articles/obesity-and-diabetes-in-arab-population/,0,56,0,19.2,0,1,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+bariatric,/health-insurance/news-and-update/combating-obesity/,0,5,0,13.6,0,1,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+cardiology,/health-insurance/articles/health-insurance-for-heart-patients/,95,8412,1.129,12.1,7,231,KEEP + UPGRADE,converts above the -hiart benchmark (1.23%). Do not redirect.
+cardiology,/health-insurance/articles/cardiovascular-diseases-symptoms-causes-treatment-and-insurance-options/,2,2826,0.071,10.3,0,129,REWRITE IN PLACE,"2,826 impr at 0.071% CTR, pos 10.3. Below benchmark; rebuild on the spoke template."
+cardiology,/health-insurance/health-guide/heart-valve-disease/,0,281,0,43.4,0,4,FOLD,only 281 impr. Merge into the spoke and 301.
+cardiology,/health-insurance/articles/world-heart-day/,4,157,2.548,6.0,0,6,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+cardiology,/health-insurance/articles/best-foods-for-heart-health/,0,7,0,31,0,1,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+childrens-cover,/health-insurance-for-kids-hiart/,2511,103260,2.432,9.9,140,7227,KEEP + UPGRADE,stronger side of a measured pair vs can-you-buy-health-insurance-for-new-born-baby-in-uae-hiart; absorb the weaker one.
+childrens-cover,/can-you-buy-health-insurance-for-new-born-baby-in-uae-hiart/,946,47191,2.005,8.5,8,550,KEEP + UPGRADE,stronger side of a measured pair vs health-insurance-for-kids-hiart; absorb the weaker one.
+childrens-cover,/health-insurance/articles/how-to-sponsor-a-child-in-uae/,45,10052,0.448,12.4,2,330,REWRITE IN PLACE,"10,052 impr at 0.448% CTR, pos 12.4. Below benchmark; rebuild on the spoke template."
+childrens-cover,/health-insurance/articles/screen-time-for-kids-how-much-is-too-much/,2,232,0.862,11.9,0,12,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+childrens-cover,/health-insurance/articles/summer-health-safety-tips-for-kids-in-uae/,0,138,0,9.1,0,10,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+childrens-cover,/health-insurance/articles/boosting-immunity-in-children-naturally/,0,34,0,27.9,0,0,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+chronic-diabetes,/health-insurance/articles/health-insurance-for-diabetes/,145,10412,1.393,6.9,8,465,KEEP + UPGRADE,converts above the -hiart benchmark (1.23%). Do not redirect.
+chronic-diabetes,/all-about-health-insurance-for-hypertension-patients-hiart/,16,1025,1.561,14.8,1,55,KEEP + UPGRADE,converts above the -hiart benchmark (1.23%). Do not redirect.
+chronic-diabetes,/health-insurance/articles/world-diabetes-day/,4,416,0.962,21.5,0,1,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+chronic-diabetes,/health-insurance/articles/fasting-with-diabetes-and-hypertension/,1,252,0.397,7.2,0,8,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+chronic-diabetes,/symptoms-of-diabetes-in-women-hiart/,0,15,0,3,0,1,FOLD,only 15 impr. Merge into the spoke and 301.
+cosmetic-plastic,/does-health-insurance-cover-plastic-surgery-in-the-uae-hiart/,54,7591,0.711,6.5,5,439,REWRITE IN PLACE,"7,591 impr at 0.711% CTR, pos 6.5. Below benchmark; rebuild on the spoke template."
+cosmetic-plastic,/health-insurance/articles/gynecomastia-surgery-cost/,10,5603,0.178,34.6,0,476,REWRITE IN PLACE,"5,603 impr at 0.178% CTR, pos 34.6. Below benchmark; rebuild on the spoke template."
+cosmetic-plastic,/health-insurance/glossary/cosmetic-surgery/,0,596,0,42.2,0,42,FOLD,only 596 impr. Merge into the spoke and 301.
+dental,/health-insurance/articles/dental-insurance-in-uae/,852,270343,0.315,6.1,38,24741,REWRITE IN PLACE,"270,343 impr at 0.315% CTR. Demand is proven; the page is not converting it."
+dental,/health-insurance/articles/best-dental-clinics-dubai/,5,23665,0.021,58.7,1,2739,CONSOLIDATE,weaker side of a measured pair vs best-dental-clinic-in-dubai; 301 into the stronger URL.
+dental,/does-health-insurance-cover-dental-implants-hiart/,23,19409,0.119,9.1,1,1737,REWRITE IN PLACE,"19,409 impr at 0.119% CTR, pos 9.1. Below benchmark; rebuild on the spoke template."
+dental,/health-insurance/articles/best-dental-clinic-in-dubai/,1,4528,0.022,23.6,0,280,CONSOLIDATE,weaker side of a measured pair vs best-dental-clinics-dubai; 301 into the stronger URL.
+dermatology,/is-dermatology-covered-by-health-insurance-hiart/,354,19261,1.838,7.2,19,1296,KEEP + UPGRADE,converts above the -hiart benchmark (1.23%). Do not redirect.
+dermatology,/health-insurance/articles/best-skin-care-clinics-in-dubai/,1,9361,0.011,70.9,0,329,REDIRECT,"9,361 impr, 0.011% CTR, pos 70.9. Buried and converting nothing."
+dermatology,/health-insurance/articles/health-insurance-for-skin-treatment/,22,2107,1.044,6.5,3,490,KEEP + UPGRADE,converts above the -hiart benchmark (1.23%). Do not redirect.
+diagnostics,/health-insurance/health-guide/laboratory-tests/,32,8023,0.399,8.2,1,362,REWRITE IN PLACE,"8,023 impr at 0.399% CTR, pos 8.2. Below benchmark; rebuild on the spoke template."
+dialysis-kidney,/health-insurance/articles/insurance-for-kidney-patients/,145,7003,2.071,8.4,8,253,KEEP + UPGRADE,converts above the -hiart benchmark (1.23%). Do not redirect.
+dialysis-kidney,/health-insurance/articles/best-foods-for-kidney-health/,0,64,0,18.2,0,2,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+emergency,/health-insurance/glossary/ambulance-cover/,2,1195,0.167,24.7,0,101,REWRITE IN PLACE,"1,195 impr at 0.167% CTR, pos 24.7. Below benchmark; rebuild on the spoke template."
+endoscopy-liver,/health-insurance/articles/health-insurance-for-liver/,16,2414,0.663,25.8,0,53,REWRITE IN PLACE,"2,414 impr at 0.663% CTR, pos 25.8. Below benchmark; rebuild on the spoke template."
+endoscopy-liver,/does-health-insurance-cover-liver-cirrhosis-hiart/,12,1010,1.188,36.9,0,47,KEEP + UPGRADE,converts above the -hiart benchmark (1.23%). Do not redirect.
+endoscopy-liver,/health-insurance/articles/gastrointestinal-diseases-symptoms-causes-treatment-and-insurance/,2,847,0.236,4.4,0,103,FOLD,only 847 impr. Merge into the spoke and 301.
+endoscopy-liver,/health-insurance/articles/health-insurance-for-liver-transplant/,1,352,0.284,11.4,0,5,FOLD,only 352 impr. Merge into the spoke and 301.
+ent,/does-your-health-insurance-plan-cover-tonsillitis-in-uae-hiart/,18,1368,1.316,37.2,0,0,KEEP + UPGRADE,"1.316% CTR, above the -hiart benchmark (1.227%). Do not redirect."
+family-medicine-gp,/health-insurance/health-guide/opd-cover/,82,7962,1.03,8.4,0,0,KEEP + UPGRADE,"1.03% CTR, above the -hiart benchmark (1.227%). Do not redirect."
+family-medicine-gp,/what-are-primary-care-physicians-hiart/,23,4678,0.492,12.1,0,0,REWRITE IN PLACE,"4,678 impr at 0.492% CTR, pos 12.1. Below benchmark; rebuild on the spoke template."
+general-surgery-folded,/health-insurance/health-guide/elective-treatment/,33,9073,0.364,7.6,0,380,REWRITE IN PLACE,"9,073 impr at 0.364% CTR, pos 7.6. Below benchmark; rebuild on the spoke template."
+general-surgery-folded,/health-insurance/articles/health-insurance-for-surgery/,5,3552,0.141,10.1,0,207,REWRITE IN PLACE,"3,552 impr at 0.141% CTR, pos 10.1. Below benchmark; rebuild on the spoke template."
+gynaecology,/how-to-find-the-best-health-insurance-for-women-in-uae-hiart/,71,7276,0.976,9.3,0,0,REWRITE IN PLACE,"7,276 impr at 0.976% CTR, pos 9.3. Below benchmark; rebuild on the spoke template."
+gynaecology,/health-insurance/articles/international-womens-day/,6,550,1.091,14.1,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.
+gynaecology,/health-insurance/news-and-update/how-does-insurance-support-womens-well-being/,0,176,0,39.6,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.
+hub-adjacent,/health-insurance/articles/top-8-specialty-clinics-in-dubai/,14,5993,0.234,20.3,0,0,REDIRECT,"OVERRIDE: pos 20.3 so the rule says rewrite, but it is provider-discovery framing at 0.234%. Redirected to hub, flagged not bent silently."
+ivf-fertility,/is-ivf-covered-by-health-insurance-hiart/,196,20443,0.959,5.3,5,549,REWRITE IN PLACE,"20,443 impr at 0.959% CTR. Demand is proven; the page is not converting it."
+maternity-obgyn,/health-insurance/articles/maternity-insurance-in-uae/,1798,138170,1.301,8.2,118,8497,KEEP + UPGRADE,converts above the -hiart benchmark (1.23%). Do not redirect.
+maternity-obgyn,/health-insurance/articles/maternity-leave-in-uae/,5,4703,0.106,18.0,0,238,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+maternity-obgyn,/health-insurance/articles/pregnancy-calculator/,14,3531,0.396,10.6,1,87,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+maternity-obgyn,/things-to-know-while-buying-health-insurance-for-pregnancy-hiart/,2,2378,0.084,36.2,0,127,REWRITE IN PLACE,"2,378 impr at 0.084% CTR, pos 36.2. Below benchmark; rebuild on the spoke template."
+mental-health,/health-insurance/articles/mental-health-awareness-day/,20,10479,0.191,7.6,0,154,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+mental-health,/does-health-insurance-cover-psychological-disorders-hiart/,41,10165,0.403,9.3,0,317,CONSOLIDATE,weaker side of a measured pair vs health-insurance-for-mental-health + depression-hiart; 301 into the stronger URL.
+mental-health,/health-insurance/articles/health-insurance-for-mental-health/,24,5059,0.474,11.2,1,342,CONSOLIDATE,weaker side of a measured pair vs psychological-disorders-hiart; 301 into the stronger URL.
+mental-health,/does-health-insurance-cover-depression-hiart/,9,743,1.211,15.8,0,50,KEEP + UPGRADE,stronger side of a measured pair vs psychological-disorders-hiart; absorb the weaker one.
+mental-health,/health-insurance/news-and-update/mohap-launches-mental-health-360/,1,165,0.606,10.7,0,0,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+mental-health,/health-insurance/articles/workplace-mental-health-uae/,0,107,0,26.9,0,15,FOLD,only 107 impr. Merge into the spoke and 301.
+mental-health,/health-insurance/news-and-update/abc-of-teenage-mental-health/,0,70,0,7.7,0,3,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+mental-health,/health-insurance/articles/mental-health-during-menopause/,0,17,0,7.7,0,2,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+neurology,/health-insurance/health-guide/multiple-sclerosis/,15,2046,0.733,42.2,0,0,REWRITE IN PLACE,"2,046 impr at 0.733% CTR, pos 42.2. Below benchmark; rebuild on the spoke template."
+neurology,/health-insurance/health-guide/alzheimer-disease/,2,1136,0.176,25.4,0,0,REWRITE IN PLACE,"1,136 impr at 0.176% CTR, pos 25.4. Below benchmark; rebuild on the spoke template."
+neurology,/health-insurance/health-guide/motor-neuron-disease/,3,820,0.366,11.4,0,0,FOLD,only 820 impr. Merge into the spoke and 301.
+neurology,/health-insurance/health-guide/coma/,0,716,0,64.9,0,0,FOLD,only 716 impr. Merge into the spoke and 301.
+neurology,/health-insurance/articles/best-critical-health-insurance-plan-for-stroke/,2,280,0.714,19.4,0,0,FOLD,only 280 impr. Merge into the spoke and 301.
+neurology,/health-insurance/health-guide/muscular-dystrophy/,0,123,0,39.3,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.
+neurology,/health-insurance/health-guide/aphasia/,0,113,0,20.0,0,0,FOLD,only 113 impr. Merge into the spoke and 301.
+neurology,/health-insurance/health-guide/polio/,1,67,1.493,29.2,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.
+oncology,/health-insurance/articles/best-health-insurance-plans-for-cancer-patients-in-uae/,145,10393,1.395,10.8,3,293,KEEP + UPGRADE,converts above the -hiart benchmark (1.23%). Do not redirect.
+oncology,/health-insurance/articles/breast-cancer-awareness-month/,15,2930,0.512,27.6,0,81,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+oncology,/health-insurance/articles/liver-cancer-symptoms-risk-factors-treatments-and-insurance-options/,2,1582,0.126,12.5,1,184,REWRITE IN PLACE,"1,582 impr at 0.126% CTR, pos 12.5. Below benchmark; rebuild on the spoke template."
+oncology,/health-insurance/news-and-update/breast-cancer-awareness-month/,1,1337,0.075,33.8,0,14,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+oncology,/health-insurance/articles/breast-cancer/,8,1090,0.734,17.1,0,60,CONSOLIDATE,"measured pair with best-health-insurance-plans-for-cancer-patients-in-uae; decide winner on position, 301 the other."
+oncology,/health-insurance/articles/importance-of-health-insurance-on-world-cancer-day/,2,635,0.315,9.7,0,25,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+oncology,/health-insurance/articles/does-stomach-cancer-cover-in-health-insurance/,0,566,0,30.6,0,12,FOLD,only 566 impr. Merge into the spoke and 301.
+oncology,/health-insurance/articles/skin-cancer/,1,315,0.317,51.5,0,23,FOLD,only 315 impr. Merge into the spoke and 301.
+oncology,/health-insurance/health-guide/cancer/,0,271,0,16.1,0,1,FOLD,only 271 impr. Merge into the spoke and 301.
+oncology,/health-insurance/articles/lung-cancer-risk-factors-diagnosis-treatment-and-insurance-options/,2,192,1.042,62.1,1,7,KEEP + UPGRADE,converts above the -hiart benchmark (1.23%). Do not redirect.
+oncology,/health-insurance/articles/kidney-cancer-symptoms-risk-factors-treatment-prevention-and-insurance-options/,0,140,0,16.0,0,15,FOLD,only 140 impr. Merge into the spoke and 301.
+oncology,/health-insurance/articles/first-time-in-history-cancer-vanishes-from-every-patients-body-in-drug-trial/,0,74,0,42.3,0,1,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+oncology,/health-insurance/news-and-update/guidelines-for-cancer-diagnosis-and-treatments-in-uae/,0,29,0,22.5,0,0,DIFFERENTIATE,"seasonal/news/tool intent, not a cover query. Retarget or noindex; do not 301 into a spoke."
+optical-vision,/health-insurance/articles/health-insurance-for-vision/,60,13894,0.432,8.0,5,868,REWRITE IN PLACE,"13,894 impr at 0.432% CTR, pos 8.0. Below benchmark; rebuild on the spoke template."
+optical-vision,/health-insurance/articles/cataract-surgery-cost-in-uae/,76,11346,0.67,11.6,1,538,CONSOLIDATE,"measured pair with cataract-surgery-in-uae-hiart; decide winner on position, 301 the other."
+optical-vision,/health-insurance/articles/lasik-eye-surgery/,9,11149,0.081,34.8,1,629,CONSOLIDATE,weaker side of a measured pair vs does-health-insurance-cover-lasik-eye-surgery-hiart; 301 into the stronger URL.
+optical-vision,/does-health-insurance-cover-lasik-eye-surgery-hiart/,88,10214,0.862,12.3,4,494,CONSOLIDATE,"measured pair with articles/lasik-eye-surgery; decide winner on position, 301 the other."
+optical-vision,/cataract-surgery-in-uae-hiart/,36,3573,1.008,16.3,0,313,KEEP + UPGRADE,stronger side of a measured pair vs articles/cataract-surgery-cost-in-uae; absorb the weaker one.
+orthopedic,/does-health-insurance-cover-knee-replacement-surgery-hiart/,4,3113,0.128,39.7,0,82,REWRITE IN PLACE,"3,113 impr at 0.128% CTR, pos 39.7. Below benchmark; rebuild on the spoke template."
+orthopedic,/health-insurance/joint-health-insurance/,0,2092,0,16.1,0,111,REWRITE IN PLACE,"2,092 impr at 0% CTR, pos 16.1. Below benchmark; rebuild on the spoke template."
+physiotherapy,/health-insurance/health-guide/physiotherapy-treatment/,60,11248,0.533,8.6,2,245,REWRITE IN PLACE,"11,248 impr at 0.533% CTR, pos 8.6. Below benchmark; rebuild on the spoke template."
+pre-approval,/co-payment-in-health-insurance-hiart/,160,21404,0.748,7.7,5,1556,REWRITE IN PLACE,"21,404 impr at 0.748% CTR. Demand is proven; the page is not converting it."
+pre-approval,/health-insurance/articles/cashless-and-reimbursement/,12,4896,0.245,11.7,1,279,REWRITE IN PLACE,"4,896 impr at 0.245% CTR, pos 11.7. Below benchmark; rebuild on the spoke template."
+pre-approval,/health-insurance/glossary/copayment/,2,1641,0.122,18.0,1,93,REWRITE IN PLACE,"1,641 impr at 0.122% CTR, pos 18.0. Below benchmark; rebuild on the spoke template."
+pre-approval,/why-choose-a-network-hospital-over-a-non-network-hospital-hiart/,9,1577,0.571,7.6,1,78,REWRITE IN PLACE,"1,577 impr at 0.571% CTR, pos 7.6. Below benchmark; rebuild on the spoke template."
+pulmonology,/health-insurance/articles/everything-you-need-to-know-about-asthma/,1,5483,0.018,3.0,0,0,CONSOLIDATE,"pos 3.0 with 1 click from 5,483 impr, and a near-duplicate -hiart twin. Winner of the pair on position; absorb the twin and fix the title."
+pulmonology,/heres-everything-you-need-to-know-about-asthma-in-the-uae-hiart/,5,546,0.916,28.5,0,0,CONSOLIDATE,"weaker side of the asthma pair (546 impr vs 5,483). 301 into the articles/ page."
+pulmonology,/health-insurance/health-guide/copd-disease/,0,89,0,30.2,0,0,FOLD,only 89 impr. Merge into the spoke and 301.
+pulmonology,/health-insurance/articles/improve-your-respiratory-health-this-winter/,0,64,0,5.3,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.
+pulmonology,/health-insurance/articles/tips-to-protect-your-lungs-during-the-harsh-winters/,0,40,0,9.0,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.
+rheumatology,/health-insurance/articles/world-arthritis-day/,1,509,0.196,7.7,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.
+rheumatology,/health-insurance/articles/health-insurance-for-arthritis/,4,338,1.183,7.0,0,0,KEEP + UPGRADE,"1.183% CTR, above the -hiart benchmark (1.227%). Do not redirect."
+rheumatology,/health-insurance/articles/health-guide-for-arthritis-awareness/,1,148,0.676,10.8,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.
+vaccinations,/health-insurance/articles/covid-19-vaccine-certificate-in-uae/,39,7080,0.551,17.6,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.
+vaccinations,/health-insurance/articles/how-to-book-an-appointment-for-covid-19-vaccine-in-dubai/,0,4214,0,18.7,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.
+vaccinations,/health-insurance/articles/free-flu-vaccine-announced-for-some-residents-in-uae/,18,2671,0.674,19.0,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.
+vaccinations,/health-insurance/news-and-update/mohap-announces-herpes-zoster-vaccine-for-individuals-over-the-age-of-50-years/,5,1077,0.464,16.9,0,0,DIFFERENTIATE,seasonal/news/awareness intent. Retarget or noindex; do not 301 into a spoke.

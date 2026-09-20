@@ -1,0 +1,42 @@
+bu,page_type,total_pages,already_compliant,need_written_by,need_reviewed_by,need_schema_author,need_schema_reviewedBy
+CRITICAL_ILLNESS,critical-illness /articles/,5,0,5,5,5,5
+CRITICAL_ILLNESS,Insurer company page,4,0,4,4,4,4
+CRITICAL_ILLNESS,critical-illness plan/product page,1,0,1,1,1,1
+CRITICAL_ILLNESS,ROOT product landing (critical-illness),1,0,1,1,1,1
+GROUP_HEALTH,group-health-insurance /articles/,17,2,15,15,9,15
+GROUP_HEALTH,Insurer company page,8,0,8,8,8,8
+GROUP_HEALTH,ROOT health category (-hic),1,1,0,0,0,0
+GROUP_HEALTH,Podcast,1,0,1,1,1,1
+HEALTH,health-insurance /articles/,293,14,269,269,107,279
+HEALTH,health-insurance plan/product page,263,1,262,262,254,262
+HEALTH,ROOT legacy health article (-hiart),119,3,116,116,44,116
+HEALTH,health-insurance /hospitals/,104,0,104,104,104,104
+HEALTH,network-hospitals directory,96,0,96,96,96,96
+HEALTH,health-insurance /news-and-update/,43,2,41,41,31,41
+HEALTH,AR — Arabic page,31,0,28,28,28,31
+HEALTH,health-insurance /glossary/,19,0,19,19,18,19
+HEALTH,health-insurance /health-guide/,16,0,16,16,16,16
+HEALTH,Podcast,16,0,16,16,16,16
+HEALTH,ROOT claim form (-hicf),14,0,14,14,12,14
+HEALTH,ROOT insurer plan detail (-hipvd),12,0,12,12,12,12
+HEALTH,Insurer company page,12,0,12,12,12,12
+HEALTH,ROOT news-and-update,11,0,11,11,9,11
+HEALTH,ROOT health category (-hic),4,0,4,4,4,4
+HEALTH,health-insurance /tpa/,4,0,4,4,1,4
+HEALTH,ROOT other page,3,0,3,3,3,3
+HEALTH,ROOT network hospital (-hinh),3,0,3,3,2,3
+HEALTH,ROOT product landing (health-insurance),1,1,0,0,0,0
+TRAVEL,travel-insurance /articles/,256,0,256,256,211,256
+TRAVEL,travel-insurance destination landing,76,0,76,76,73,76
+TRAVEL,travel-insurance /news-and-update/,42,0,42,42,19,42
+TRAVEL,travel-insurance other subpage,13,0,13,13,13,13
+TRAVEL,travel-insurance visa landing,13,0,13,13,13,13
+TRAVEL,Insurer company page,11,0,11,11,11,11
+TRAVEL,ROOT news-and-update,7,0,7,7,3,7
+TRAVEL,Podcast,6,0,6,6,6,6
+TRAVEL,ROOT travel plan detail (-tipvd),4,0,4,4,4,4
+TRAVEL,ROOT other page,3,0,3,3,3,3
+TRAVEL,AR — Arabic page,1,0,1,1,1,1
+TRAVEL,CEO blog,1,0,1,1,1,1
+TRAVEL,ROOT travel category (-tic),1,1,0,0,0,0
+TRAVEL,ROOT product landing (travel-insurance),1,1,0,0,0,0

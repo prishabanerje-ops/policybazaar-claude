@@ -1,0 +1,462 @@
+{
+  ".claude/settings.json": {
+    "mtime": 1783285936.5390103,
+    "ast_hash": "d72f1ea6ce170ee77fb75d6be6433065",
+    "semantic_hash": "d72f1ea6ce170ee77fb75d6be6433065"
+  },
+  ".claude/skills/ai-search/scripts/build_matrix.py": {
+    "mtime": 1782305575.0,
+    "ast_hash": "a0addc8e31fe0d76f8b9bb3b0389958e",
+    "semantic_hash": "a0addc8e31fe0d76f8b9bb3b0389958e"
+  },
+  ".claude/skills/ai-search/scripts/extract_aio.js": {
+    "mtime": 1782306733.0,
+    "ast_hash": "81c9b2961399559f829eddaed7bfca70",
+    "semantic_hash": "81c9b2961399559f829eddaed7bfca70"
+  },
+  ".claude/skills/ai-search/scripts/extract_chatgpt.js": {
+    "mtime": 1782306687.0,
+    "ast_hash": "ed9fc1f3726155459d989761f830f8b0",
+    "semantic_hash": "ed9fc1f3726155459d989761f830f8b0"
+  },
+  ".claude/agents/ai-overview-scraper.md": {
+    "mtime": 1783276342.5979676,
+    "ast_hash": "e0206176512caed25c332238e2f3a69d",
+    "semantic_hash": "e0206176512caed25c332238e2f3a69d"
+  },
+  ".claude/agents/code-reviewer.md": {
+    "mtime": 1783275016.6029027,
+    "ast_hash": "361925e8b9a2e38f108926cdeb5180b1",
+    "semantic_hash": "361925e8b9a2e38f108926cdeb5180b1"
+  },
+  ".claude/agents/security-auditor.md": {
+    "mtime": 1783275016.6039581,
+    "ast_hash": "428e62c9b770e41d1b1e8f97bdc0cc5c",
+    "semantic_hash": "428e62c9b770e41d1b1e8f97bdc0cc5c"
+  },
+  ".claude/commands/deploy.md": {
+    "mtime": 1783275016.6103718,
+    "ast_hash": "8a5bbd46aac97d3d431a91d11e259166",
+    "semantic_hash": "8a5bbd46aac97d3d431a91d11e259166"
+  },
+  ".claude/commands/fix-issue.md": {
+    "mtime": 1783275016.6095104,
+    "ast_hash": "db040f998a04dcee4ba32f292616f200",
+    "semantic_hash": "db040f998a04dcee4ba32f292616f200"
+  },
+  ".claude/commands/review.md": {
+    "mtime": 1783275016.611041,
+    "ast_hash": "0aa8610642f6e55c9d8404b98fbcb5ed",
+    "semantic_hash": "0aa8610642f6e55c9d8404b98fbcb5ed"
+  },
+  ".claude/docs/superpowers/plans/2026-06-26-linkedin-image-post.md": {
+    "mtime": 1782455714.0,
+    "ast_hash": "4d3e4c8a6f2f394b65d0aad8ae3cad46",
+    "semantic_hash": "4d3e4c8a6f2f394b65d0aad8ae3cad46"
+  },
+  ".claude/docs/superpowers/plans/2026-07-06-workspace-restructure.md": {
+    "mtime": 1783283863.3299353,
+    "ast_hash": "2079c6cf32e66bfad433787862d43993",
+    "semantic_hash": "2079c6cf32e66bfad433787862d43993"
+  },
+  ".claude/docs/superpowers/specs/2026-06-26-linkedin-image-post-design.md": {
+    "mtime": 1782455125.0,
+    "ast_hash": "ffce490e348227be4055810e931924a9",
+    "semantic_hash": "ffce490e348227be4055810e931924a9"
+  },
+  ".claude/docs/superpowers/specs/2026-07-06-workspace-restructure-design.md": {
+    "mtime": 1783279154.3171532,
+    "ast_hash": "8e0c335d92bec7b3cea89a8eb19ed0d0",
+    "semantic_hash": "8e0c335d92bec7b3cea89a8eb19ed0d0"
+  },
+  ".claude/rules/api-conventions.md": {
+    "mtime": 1783275016.6078634,
+    "ast_hash": "4fa857753e6d63cfaf0320f4421a8247",
+    "semantic_hash": "4fa857753e6d63cfaf0320f4421a8247"
+  },
+  ".claude/rules/code-style.md": {
+    "mtime": 1783275016.605906,
+    "ast_hash": "cc9197dac81d9a862738085d2a6d1be9",
+    "semantic_hash": "cc9197dac81d9a862738085d2a6d1be9"
+  },
+  ".claude/rules/testing.md": {
+    "mtime": 1783275016.6069674,
+    "ast_hash": "f3cf3e61f04522e4d59433aa026df944",
+    "semantic_hash": "f3cf3e61f04522e4d59433aa026df944"
+  },
+  ".claude/skills/ai-search/SKILL.md": {
+    "mtime": 1783336472.0517328,
+    "ast_hash": "858b46f71f61b8a462808af4d8edb439",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/SKILL.md": {
+    "mtime": 1783670582.402786,
+    "ast_hash": "1c32bee8dd8cc97508aadb469e8b66d7",
+    "semantic_hash": ""
+  },
+  ".claude/skills/deploy/SKILL.md": {
+    "mtime": 1783275016.612827,
+    "ast_hash": "9a511797c373c61a4379ad8e83ec3908",
+    "semantic_hash": "9a511797c373c61a4379ad8e83ec3908"
+  },
+  ".claude/skills/scrape/SKILL.md": {
+    "mtime": 1783282546.8084733,
+    "ast_hash": "9305df0c3f9a89c4ebd39c389402a0f1",
+    "semantic_hash": "9305df0c3f9a89c4ebd39c389402a0f1"
+  },
+  ".claude/skills/scrape/references/news.md": {
+    "mtime": 1779958033.0,
+    "ast_hash": "b7be64bd3e2ef547b1709ea0b584e648",
+    "semantic_hash": "b7be64bd3e2ef547b1709ea0b584e648"
+  },
+  ".claude/skills/scrape/references/qna.md": {
+    "mtime": 1780036133.0,
+    "ast_hash": "ded078fbafc8b4e5bbde18f30e7a8c79",
+    "semantic_hash": "ded078fbafc8b4e5bbde18f30e7a8c79"
+  },
+  ".claude/skills/scrape/references/reviews.md": {
+    "mtime": 1779958033.0,
+    "ast_hash": "27328c00907e054492106f25765f5270",
+    "semantic_hash": "27328c00907e054492106f25765f5270"
+  },
+  ".claude/skills/security-review/SKILL.md": {
+    "mtime": 1783275016.6140807,
+    "ast_hash": "57c82c1e7ab131e0be0bf15eeeb1a810",
+    "semantic_hash": "57c82c1e7ab131e0be0bf15eeeb1a810"
+  },
+  ".claude/skills/seo/SKILL.md": {
+    "mtime": 1783282047.4487617,
+    "ast_hash": "5c3245ad7268105bf9992f22233dada1",
+    "semantic_hash": "5c3245ad7268105bf9992f22233dada1"
+  },
+  ".claude/skills/uae-insurance/SKILL.md": {
+    "mtime": 1783282067.8499641,
+    "ast_hash": "fb235423d63712b32effd6837ab5efad",
+    "semantic_hash": "fb235423d63712b32effd6837ab5efad"
+  },
+  "CLAUDE.md": {
+    "mtime": 1783671252.4821987,
+    "ast_hash": "5326223d8d936265834eb55c5c811caa",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-audit/SKILL.md": {
+    "mtime": 1783683261.6071808,
+    "ast_hash": "986efb440d6b2ec5b5ccee1568daa1d4",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-audit/assets/policybazaar-urls.txt": {
+    "mtime": 1782906558.0,
+    "ast_hash": "f84641976ef9db1c2cba126f0cdbda5f",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-audit/references/ai-detection-parameters.md": {
+    "mtime": 1783670394.18045,
+    "ast_hash": "41a3b23b6d97147b10516a7a1b36e619",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-audit/references/eeat-framework.md": {
+    "mtime": 1783670350.3433225,
+    "ast_hash": "7f19b3240431434bba6c3ea58496e6bf",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-audit/references/fact-check-parameters.md": {
+    "mtime": 1783670446.5895917,
+    "ast_hash": "d45ad921582b7888941b1614218f07e4",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-audit/references/geo-parameters.md": {
+    "mtime": 1783670467.1864834,
+    "ast_hash": "f8fd543e6e85cdacdd4fdfac0d8717cd",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-audit/references/policybazaar-context.md": {
+    "mtime": 1783672927.0731754,
+    "ast_hash": "fb0743b58a1972aa4ee219d6f76235de",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-audit/references/seo-parameters.md": {
+    "mtime": 1783678952.166832,
+    "ast_hash": "e2c87cd8148d85423004a8f3e652b1ac",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-audit/references/ymyl-helpful-content.md": {
+    "mtime": 1783670285.2934895,
+    "ast_hash": "f8a97fb8b3f647b30b342fd66995d867",
+    "semantic_hash": ""
+  },
+  "read-me-invoke.md": {
+    "mtime": 1783315985.9773488,
+    "ast_hash": "130bcc5180b58d2fd240dfc30b9a2f34",
+    "semantic_hash": ""
+  },
+  "todo/2026-07-06-graphify-setup.md": {
+    "mtime": 1783288766.9707863,
+    "ast_hash": "31b1fb780338da3001e37a31068eb06d",
+    "semantic_hash": ""
+  },
+  "todo/2026-07-06-workspace-structure-fix-plan.md": {
+    "mtime": 1783288282.4961672,
+    "ast_hash": "5d2050c68cd3ccb8bccbdbac11c89097",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-brief/SKILL.md": {
+    "mtime": 1783319724.4708548,
+    "ast_hash": "4311849f3c85fa7e25bf03d8f737906d",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-brief/assets/paisabazaar-urls.txt": {
+    "mtime": 1782906570.0,
+    "ast_hash": "9c1db194004c58838dc94602c912b463",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-brief/assets/policybazaar-urls.txt": {
+    "mtime": 1782906570.0,
+    "ast_hash": "f84641976ef9db1c2cba126f0cdbda5f",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-brief/references/internal-linking-guide.md": {
+    "mtime": 1782906570.0,
+    "ast_hash": "448c1c8e45b9de95a51dcae75e71fc78",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-brief/references/news-and-trends.md": {
+    "mtime": 1782906570.0,
+    "ast_hash": "74cfea8fe8556a2274849dbd16081839",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-brief/references/paisabazaar-context.md": {
+    "mtime": 1782906570.0,
+    "ast_hash": "1ceba9888ce6898ac156eec6e8bd3518",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-brief/references/policybazaar-context.md": {
+    "mtime": 1782906570.0,
+    "ast_hash": "3b2c0f67308d70296c6231106f1f5061",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-brief/references/pre-writing-checklist.md": {
+    "mtime": 1782906570.0,
+    "ast_hash": "2e8f79aed3724c347d3b5579eb63aba5",
+    "semantic_hash": ""
+  },
+  ".claude/commands/content-brief.md": {
+    "mtime": 1783316349.3643823,
+    "ast_hash": "a16f60284be79378464953c7f8ffffcd",
+    "semantic_hash": ""
+  },
+  ".claude/commands/content-audit.md": {
+    "mtime": 1783670588.8233342,
+    "ast_hash": "39fc87b85a353ea05d1f0de7aa5b598c",
+    "semantic_hash": ""
+  },
+  ".claude/skills/ai-search/references/prompts-health.md": {
+    "mtime": 1783336444.6621158,
+    "ast_hash": "f43e05ef82b4e12de30fb2cd669462c7",
+    "semantic_hash": ""
+  },
+  ".claude/skills/ai-search/references/prompts-travel.md": {
+    "mtime": 1783336456.5204935,
+    "ast_hash": "5439eeac7ff85b32e0db53819bc94a73",
+    "semantic_hash": ""
+  },
+  "SCHEMA-PLAN.md": {
+    "mtime": 1783344909.665071,
+    "ast_hash": "41e078e0f6245069088ab8106d1ec8ee",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-audit/references/schema-expectations-health.md": {
+    "mtime": 1783673004.8875346,
+    "ast_hash": "a71542e8845bae4684b9f78d0c6543f0",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/collector.py": {
+    "mtime": 1783678869.0578,
+    "ast_hash": "388b36657ee2a67cc384fc3312223067",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/config.py": {
+    "mtime": 1783683212.4430766,
+    "ast_hash": "fc5d260b9f7da88052037d2661696f5b",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/consistency.py": {
+    "mtime": 1783488133.4610405,
+    "ast_hash": "4c81e9b2f9802a5e76ca1cf2d19ca608",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/filter_urls.py": {
+    "mtime": 1783417614.6793807,
+    "ast_hash": "8290e259e510a40fb3abf21ed6a5a06d",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/schema.py": {
+    "mtime": 1783678869.056447,
+    "ast_hash": "744e46f00d918c6fc8cd731ff164d97a",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/state.py": {
+    "mtime": 1783425525.318113,
+    "ast_hash": "9b39d4d747b6faccc2fe17132c7e1ba7",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/test_collector.py": {
+    "mtime": 1783678869.064268,
+    "ast_hash": "8416954440208b0d854156c6a3440222",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/test_consistency.py": {
+    "mtime": 1783488155.8995764,
+    "ast_hash": "00d0401e9c2d1fe062f3ed76c14bd290",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/test_filter_urls.py": {
+    "mtime": 1783418267.7096338,
+    "ast_hash": "0b21c9ca7a33aa0c75d3198fdb54af7c",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/test_schema.py": {
+    "mtime": 1783678869.060828,
+    "ast_hash": "1d70029678445639a183f89336991bba",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/test_state.py": {
+    "mtime": 1783425534.8585737,
+    "ast_hash": "7c6f9a9d8dac000fdfcd99d0515ca485",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/workflow-batch.js": {
+    "mtime": 1783425840.8391004,
+    "ast_hash": "a7538b91cae3d6bea9b2f9300f4f72f0",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/collector.py": {
+    "mtime": 1783678807.576721,
+    "ast_hash": "388b36657ee2a67cc384fc3312223067",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/config.py": {
+    "mtime": 1783683222.7360075,
+    "ast_hash": "0b18143fab941a4d037a09c7f0453771",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/consistency.py": {
+    "mtime": 1783671144.282533,
+    "ast_hash": "660a72aee14b20dbc17f7a5b6599737c",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/filter_urls.py": {
+    "mtime": 1783671097.35042,
+    "ast_hash": "336234fe7f9e7cd1e2260a5985304c79",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/schema.py": {
+    "mtime": 1783678790.4115927,
+    "ast_hash": "744e46f00d918c6fc8cd731ff164d97a",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/state.py": {
+    "mtime": 1783671041.7431366,
+    "ast_hash": "9b39d4d747b6faccc2fe17132c7e1ba7",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/test_collector.py": {
+    "mtime": 1783678836.8857758,
+    "ast_hash": "8416954440208b0d854156c6a3440222",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/test_consistency.py": {
+    "mtime": 1783671041.7452092,
+    "ast_hash": "00d0401e9c2d1fe062f3ed76c14bd290",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/test_filter_urls.py": {
+    "mtime": 1783671161.5433095,
+    "ast_hash": "684eda3c2169226632b44379e2f5ae9e",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/test_schema.py": {
+    "mtime": 1783678829.2856386,
+    "ast_hash": "1d70029678445639a183f89336991bba",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/test_state.py": {
+    "mtime": 1783671041.7487006,
+    "ast_hash": "7c6f9a9d8dac000fdfcd99d0515ca485",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/workflow-batch.js": {
+    "mtime": 1783671146.6551065,
+    "ast_hash": "b74f4d70c614f18784e3fc5ac14c35e1",
+    "semantic_hash": ""
+  },
+  ".claude/commands/health-audit-batch.md": {
+    "mtime": 1783683298.9510365,
+    "ast_hash": "f1512356ae0e64e8d4632cbeb9e8d1ea",
+    "semantic_hash": ""
+  },
+  ".claude/commands/travel-audit-batch.md": {
+    "mtime": 1783683320.9727173,
+    "ast_hash": "9fa44cc150339a247d73703def1f953f",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-07-07-health-insurance-content-audit.md": {
+    "mtime": 1783408634.1270595,
+    "ast_hash": "18815ce9ca807239fb1d256d891ca889",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-07-07-health-insurance-content-audit-design.md": {
+    "mtime": 1783406168.3582492,
+    "ast_hash": "906cb9042da925a780788c50db7d5de2",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/agent-prompt.md": {
+    "mtime": 1783683272.4016433,
+    "ast_hash": "ad513ab6f9e8251ec5ae45b05f84e982",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/sitemap-health-2026-07-10.txt": {
+    "mtime": 1783671193.377278,
+    "ast_hash": "c3e8b942a9864575342ab8f8b5592444",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/agent-prompt.md": {
+    "mtime": 1783683283.343715,
+    "ast_hash": "2fa341d177a224367170e96b39377d46",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/sitemap-travel-2026-07-10.txt": {
+    "mtime": 1783671193.371151,
+    "ast_hash": "d24f4b2b21ca7c9146d69f5b9b72100b",
+    "semantic_hash": ""
+  },
+  ".claude/skills/content/content-audit/references/schema-expectations-travel.md": {
+    "mtime": 1783676278.5064385,
+    "ast_hash": "e5504ee8370385f622f3aec113356871",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/travel-urls.txt": {
+    "mtime": 1783674726.5081632,
+    "ast_hash": "d24f4b2b21ca7c9146d69f5b9b72100b",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/test_tracker.py": {
+    "mtime": 1783682250.3086689,
+    "ast_hash": "f66981b92d64946cb13645150f11102a",
+    "semantic_hash": ""
+  },
+  "tools/health-audit/tracker.py": {
+    "mtime": 1783682205.2217138,
+    "ast_hash": "b802a1730b03a0aa243d70a99a2dc828",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/test_tracker.py": {
+    "mtime": 1783682258.6274784,
+    "ast_hash": "f66981b92d64946cb13645150f11102a",
+    "semantic_hash": ""
+  },
+  "tools/travel-audit/tracker.py": {
+    "mtime": 1783682235.4538646,
+    "ast_hash": "b802a1730b03a0aa243d70a99a2dc828",
+    "semantic_hash": ""
+  }
+}

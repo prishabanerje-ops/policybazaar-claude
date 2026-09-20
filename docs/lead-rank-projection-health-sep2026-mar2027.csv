@@ -1,0 +1,44 @@
+Ranking,,5.00%,0.00%,0.00%,0.00%,4.76%,0.00%
+Health,Sept,Oct,Nov,Dec,Jan,Feb,Mar
+Top 5,20,21,21,21,21,22,22
+Top 10,4,6,7,9,10,12,13
+Top 15,9,10,11,13,14,15,16
+Top 20,9,7,6,4,3,1,0
+21+,9,7,6,4,3,1,0
+Total Keywords,51,51,51,51,51,51,51
+
+"Baseline (pre-Sept, current real ranking): Top5=20, Top10=3, Top15=8, Top20=10, 21+=10"
+
+Leads,,8.00%,7.35%,6.90%,6.41%,6.06%,5.68%
+Health,Sept,Oct,Nov,Dec,Jan,Feb,Mar
+,1813,1958,2102,2247,2391,2536,2680
+
+"Note: Aug-26 real baseline = 1,669 leads. Mar-27 target = 2,680 = 80% of March 2025's real 3,350."
+
+
+Ranking,,1.75%,0.00%,1.72%,0.00%,1.69%,0.00%
+Travel,Sept,Oct,Nov,Dec,Jan,Feb,Mar
+Top 5,57,58,58,59,59,60,60
+Top 10,9,10,11,13,14,15,16
+Top 15,9,7,6,5,4,2,1
+Top 20,1,1,1,0,0,0,0
+21+,1,1,1,0,0,0,0
+Total Keywords,77,77,77,77,77,77,77
+
+"Baseline (pre-Sept, current real ranking): Top5=57, Top10=8, Top15=10, Top20=1, 21+=1"
+
+Leads,,16.58%,14.22%,12.45%,11.07%,9.97%,9.06%
+Travel,Sept,Oct,Nov,Dec,Jan,Feb,Mar
+,1104,1287,1470,1653,1836,2019,2202
+
+"Note: Aug-26 real baseline = 921 leads. Mar-27 target = 2202 = 80% of March 2025's real 2752. This is a much steeper ask than Health's -- Travel's Mar-2025 figure (2752) was close to its all-time peak, while the current baseline (921) is 66.5% below that peak, so the assumed recovery is proportionally larger."
+
+
+Vertical / Workstream,Core Initiative,Strategic Focus,Expected SEO Impact (ASSUMPTION),Expected Business Impact (ASSUMPTION),Dependencies
+Health,Health Cover Page Launch,"Publish the /health-insurance/cover/ hub plus 30 specialty spokes (orthopedic, cardiac, dental, IVF, mental health, etc.), audited page-by-page against the spec before publish to avoid cannibalizing existing pages.","ASSUMPTION: ranks for 15-25 new specialty-cover keyword variants within 3-6 months of publish -- new pages take time to rank, and per-page cannibalization audits mean this is intended to be incremental impressions, not a reshuffle of existing rankings.","ASSUMPTION: 5-10% incremental leads from specialty-cover search intent that has no dedicated page today. Not a committed number -- no comparable page-launch precedent on this site to calibrate against.","Content, Product, Legal/Compliance"
+Health,Remove / Re-optimise Redundant Content,"Prune or consolidate underperforming pages identified via the leads-intelligence and cannibalisation audits (Sections 2 and 4).","ASSUMPTION: +5-15% ranking/impressions on the surviving consolidated pages from concentrated link equity, per standard consolidation practice. Section 4's audit found only 1 pair actually clears the safety guards as a real redirect, so the bulk of this initiative's SEO effect depends on which pages get pruned beyond that single confirmed case.","ASSUMPTION: 3-6% leads uplift on destination pages from reduced internal cannibalization. Deliberately not a bigger number -- the audited evidence only supports one confirmed redirect today.","SEO, Content, Dev (redirects)"
+Health,Partially Automate Weekly Performance Reporting,"Automate the data sections of the existing manual weekly Slides report (KPI cards, landing-page table, AI-citations table) from Metabase/GA4/SEMrush/manual ranking.","N/A -- this is an internal reporting workflow change with no direct effect on rankings, impressions, or clicks.","NOT ESTIMATED: intended to save manual reporting time, but I don't know how many hours the current manual process takes, so I won't invent a savings figure. Tell me the current time cost and I'll turn that into a number.","Metabase access, PPT-generation tooling"
+Health,FAQPage/Article Schema Rollout,"Add FAQ/Article schema to high-intent pages missing it (e.g. travel-insurance-for-over-65: 950 words, zero FAQ schema).",ASSUMPTION: +10-20% CTR on schema-enabled pages from rich-result eligibility; supports AI Overview/ChatGPT citation share (currently ~53-64% cited per the Aug weekly deck for comparable health prompts).,ASSUMPTION: 3-5% leads uplift on affected pages from improved CTR. No ranking-position claim -- schema is not a direct ranking factor.,"Content, Schema/Dev"
+Health,Google Messages (RCS) Business Chat,"Enable RCS-based chat with the brand directly from Google Search results or the Google Messages app on Android, with no app download or site visit required.","N/A -- not a ranking factor; adds a chat entry point directly inside the Google Search result and Google Messages app, not an organic ranking lever.","ASSUMPTION: lower-friction lead capture from searchers who see PB in results but don't click through to the site. No comparable channel launch on this site to calibrate a specific %, so no number is asserted here.","Google Business Profile, RCS/Business Messages setup, live chat or lead-routing ops"
+Health,Internal-Link Cleanup Pass,Point internal links/sitemaps directly at already-redirected consolidated URLs instead of riding the 301.,"ASSUMPTION: +10-15% clicks on consolidated URLs -- grounded in a real precedent on this exact site: the Aug weekly deck recorded clicks 97->113 (+16%) on the /health-insurance/ hub after a similar Meta/H1 rewrite + 3,914-link internal pass.","ASSUMPTION: leads uplift proportional to the clicks gain above (not separately measured); treat as directional, not a committed number.","SEO, Dev"
+Health,E-E-A-T Remediation Pass,Add multi-insurer citations and missing product-specific entities on pages scoring below ~65/100.,"ASSUMPTION: +10-15% AI Overview/ChatGPT citation rate on treated pages, extrapolated from this site's existing AI-citation tracking framework -- not measured for this specific fix yet.","ASSUMPTION: 5-10% leads uplift from trust-signal improvements, an industry-pattern estimate, not derived from this site's data.","Content, Legal/Compliance"
